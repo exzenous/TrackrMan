@@ -3,14 +3,27 @@ package com.TrackrMan;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 public class AppRunner extends Application {
 
-    Button button1,button2,button3;
+    Button trackButton, aboutButton;
+    BorderPane windowView;
+    AnchorPane sideButtonsPane;
+    AnchorPane workingPane;
+
+    public class ClickAction implements EventHandler<ActionEvent> {
+
+        @Override
+        public void handle(ActionEvent event) {
+
+        }
+    }
 
     public static void main(String[] args) {
         launch(args);
@@ -20,18 +33,35 @@ public class AppRunner extends Application {
     public void start(Stage mainWindow) throws Exception {
         mainWindow.setTitle("TrackMan");
 
-        GridPane gridPane = new GridPane();
-        Scene firstScene = new Scene(gridPane);
+        AnchorPane trackView = FXMLLoader.load(getClass().getResource("TrackPane.fxml"));
+        AnchorPane aboutView = FXMLLoader.load(getClass().getResource("AboutPane.fxml"));
 
-        button1 = new Button("First");
-        button2 = new Button("Second");
-        button3 = new Button("Third");
-        gridPane.add(button1,1,1);
-        gridPane.add(button2,1,2);
-        gridPane.add(button3,1,3);
+        windowView = new BorderPane();
+        sideButtonsPane = new AnchorPane();
+        workingPane = new AnchorPane();
 
-        mainWindow.setScene(firstScene);
-        mainWindow.sizeToScene();
+        trackButton = new Button("Track");
+        trackButton.setOnAction(e -> {
+            windowView.setCenter(trackView);
+        });
+        aboutButton = new Button("About");
+        aboutButton.setOnAction(e -> {
+            windowView.setCenter(aboutView);
+        });
+        VBox groupedButtons = new VBox(trackButton, aboutButton);
+
+        sideButtonsPane.setPrefWidth(150);
+        sideButtonsPane.getChildren().add(groupedButtons);
+
+        windowView.setLeft(sideButtonsPane);
+        windowView.setCenter(workingPane);
+
+        workingPane.getChildren().add(trackView);
+
+        Scene loadedScreen = new Scene(windowView,600,400);
+
+        mainWindow.setScene(loadedScreen);
+
         mainWindow.show();
 
     }
