@@ -21,6 +21,7 @@ public class AppRunner extends Application {
 
         @Override
         public void handle(ActionEvent event) {
+            System.out.println("OK");
         }
     }
 
