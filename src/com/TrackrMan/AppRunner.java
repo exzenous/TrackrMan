@@ -2,16 +2,12 @@ package com.TrackrMan;
 
 import com.jfoenix.controls.JFXButton;
 
-import com.jfoenix.controls.JFXRippler;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -72,18 +68,7 @@ public class AppRunner extends Application {
             mainWindow.close();
         });
 
-        GridPane centerBP = new GridPane();
         VBox centerBtns = new VBox(trackButton, historyButton, aboutButton);
-
-        final int numRows = 2 ;
-        for (int i = 0; i < numRows; i++) {
-            RowConstraints rowConst = new RowConstraints();
-            rowConst.setPercentHeight(100 / numRows);
-            centerBP.getRowConstraints().add(rowConst);
-        }
-
-        GridPane.setConstraints(centerBtns,0,0);
-        centerBP.getChildren().add(centerBtns);
 
         sideButtonsPane.setCenter(centerBtns);
         sideButtonsPane.setBottom(exitButton);
