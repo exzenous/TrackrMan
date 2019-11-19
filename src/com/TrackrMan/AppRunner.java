@@ -10,7 +10,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
@@ -19,7 +22,7 @@ public class AppRunner extends Application {
     JFXButton trackButton, historyButton, aboutButton, exitButton;
 
     BorderPane windowView;
-    GridPane sideButtonsPane;
+    BorderPane sideButtonsPane;
 
     public static void main(String[] args) {
         launch(args);
@@ -36,42 +39,55 @@ public class AppRunner extends Application {
 
         windowView = new BorderPane();
 
-        sideButtonsPane = new GridPane();
+        sideButtonsPane = new BorderPane();
 
-        Scene loadedScreen = new Scene(windowView,1200,900);
+        Scene loadedScreen = new Scene(windowView,800,600);
 
-        trackButton = new JFXButton("Track");
+        Image imageSearch = new Image(getClass().getResourceAsStream("img/icons8-search_filled.png"));
+        ImageView imageSearchView = new ImageView(imageSearch);
+        trackButton = new JFXButton("Track", imageSearchView);
+        trackButton.setContentDisplay(ContentDisplay.TOP);
         trackButton.setOnAction(e -> {
             windowView.setCenter(trackView);
         });
-        historyButton = new JFXButton("History");
+        Image imageHistory = new Image(getClass().getResourceAsStream("img/icons8-checked.png"));
+        ImageView imageHistoryView = new ImageView(imageHistory);
+        historyButton = new JFXButton("History",imageHistoryView);
+        historyButton.setContentDisplay(ContentDisplay.TOP);
         historyButton.setOnAction(e -> {
             System.out.println("AppRunner.start");
         });
-        aboutButton = new JFXButton("About");
+        Image imageAbout = new Image(getClass().getResourceAsStream("img/icons8-info.png"));
+        ImageView imageAboutView = new ImageView(imageAbout);
+        aboutButton = new JFXButton("About", imageAboutView);
+        aboutButton.setContentDisplay(ContentDisplay.TOP);
         aboutButton.setOnAction(e -> {
             windowView.setCenter(aboutView);
         });
-        exitButton = new JFXButton("Exit");
+        Image imageExit = new Image(getClass().getResourceAsStream("img/icons8-exit_sign.png"));
+        ImageView imageExitView = new ImageView(imageExit);
+        exitButton = new JFXButton("Exit",imageExitView);
+        exitButton.setContentDisplay(ContentDisplay.TOP);
         exitButton.setOnAction(e -> {
             mainWindow.close();
         });
 
+        GridPane centerBP = new GridPane();
+        VBox centerBtns = new VBox(trackButton, historyButton, aboutButton);
 
-        final int numRows = 10 ;
+        final int numRows = 2 ;
         for (int i = 0; i < numRows; i++) {
             RowConstraints rowConst = new RowConstraints();
-            rowConst.setPercentHeight(100.0 / numRows);
-            sideButtonsPane.getRowConstraints().add(rowConst);
+            rowConst.setPercentHeight(100 / numRows);
+            centerBP.getRowConstraints().add(rowConst);
         }
 
-        GridPane.setConstraints(trackButton,0,0);
-        GridPane.setConstraints(historyButton,0,1);
-        GridPane.setConstraints(aboutButton,0,2);
-        GridPane.setConstraints(exitButton,0,9);
-        sideButtonsPane.getChildren().addAll(trackButton, historyButton, aboutButton, exitButton);
+        GridPane.setConstraints(centerBtns,0,0);
+        centerBP.getChildren().add(centerBtns);
 
-        sideButtonsPane.setVgap(0);
+        sideButtonsPane.setCenter(centerBtns);
+        sideButtonsPane.setBottom(exitButton);
+
         sideButtonsPane.setPrefWidth(150);
 
         sideButtonsPane.setStyle("-fx-background-color: #005b9f");
