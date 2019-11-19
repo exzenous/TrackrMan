@@ -1,5 +1,7 @@
 package com.TrackrMan;
 
+import com.jfoenix.controls.JFXButton;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -12,17 +14,10 @@ import javafx.stage.Stage;
 
 public class AppRunner extends Application {
 
-    Button trackButton, aboutButton;
+    JFXButton trackButton, historyButton, aboutButton;
+
     BorderPane windowView;
     AnchorPane sideButtonsPane;
-    AnchorPane workingPane;
-
-    public class ClickAction implements EventHandler<ActionEvent> {
-
-        @Override
-        public void handle(ActionEvent event) {
-        }
-    }
 
     public static void main(String[] args) {
         launch(args);
@@ -31,33 +26,42 @@ public class AppRunner extends Application {
     @Override
     public void start(Stage mainWindow) throws Exception {
         mainWindow.setTitle("TrackMan");
+        mainWindow.setMinWidth(800);
+        mainWindow.setMinHeight(600);
 
         AnchorPane trackView = FXMLLoader.load(getClass().getResource("TrackPane.fxml"));
         AnchorPane aboutView = FXMLLoader.load(getClass().getResource("AboutPane.fxml"));
 
         windowView = new BorderPane();
-        sideButtonsPane = new AnchorPane();
-        workingPane = new AnchorPane();
 
-        trackButton = new Button("Track");
+        sideButtonsPane = new AnchorPane();
+
+        Scene loadedScreen = new Scene(windowView,800,600);
+
+        trackButton = new JFXButton("Track");
         trackButton.setOnAction(e -> {
             windowView.setCenter(trackView);
         });
-        aboutButton = new Button("About");
+        historyButton = new JFXButton("History");
+        historyButton.setOnAction(e -> {
+            System.out.println("AppRunner.start");
+        });
+        aboutButton = new JFXButton("About");
         aboutButton.setOnAction(e -> {
             windowView.setCenter(aboutView);
         });
-        VBox groupedButtons = new VBox(trackButton, aboutButton);
 
-        sideButtonsPane.setPrefWidth(150);
+        VBox groupedButtons = new VBox(trackButton, historyButton, aboutButton);
+
+        sideButtonsPane.setPrefWidth(200);
         sideButtonsPane.getChildren().add(groupedButtons);
 
+        sideButtonsPane.setStyle("-fx-background-color:#AAAAAA");
+
         windowView.setLeft(sideButtonsPane);
-        windowView.setCenter(workingPane);
+        windowView.setCenter(trackView);
 
-        workingPane.getChildren().add(trackView);
-
-        Scene loadedScreen = new Scene(windowView,600,400);
+        loadedScreen.getStylesheets().add(getClass().getResource("AppStyle.css").toExternalForm());
 
         mainWindow.setScene(loadedScreen);
 
