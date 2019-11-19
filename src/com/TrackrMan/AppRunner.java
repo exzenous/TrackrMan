@@ -2,6 +2,7 @@ package com.TrackrMan;
 
 import com.jfoenix.controls.JFXButton;
 
+import com.jfoenix.controls.JFXRippler;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -9,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
@@ -53,7 +55,7 @@ public class AppRunner extends Application {
 
         VBox groupedButtons = new VBox(trackButton, historyButton, aboutButton);
 
-        sideButtonsPane.setPrefWidth(200);
+        sideButtonsPane.setPrefWidth(150);
         sideButtonsPane.getChildren().add(groupedButtons);
 
         sideButtonsPane.setStyle("-fx-background-color:#AAAAAA");
