@@ -16,10 +16,10 @@ import javafx.stage.Stage;
 
 public class AppRunner extends Application {
 
-    JFXButton trackButton, historyButton, aboutButton;
+    JFXButton trackButton, historyButton, aboutButton, exitButton;
 
     BorderPane windowView;
-    AnchorPane sideButtonsPane;
+    GridPane sideButtonsPane;
 
     public static void main(String[] args) {
         launch(args);
@@ -36,9 +36,9 @@ public class AppRunner extends Application {
 
         windowView = new BorderPane();
 
-        sideButtonsPane = new AnchorPane();
+        sideButtonsPane = new GridPane();
 
-        Scene loadedScreen = new Scene(windowView,800,600);
+        Scene loadedScreen = new Scene(windowView,1200,900);
 
         trackButton = new JFXButton("Track");
         trackButton.setOnAction(e -> {
@@ -52,13 +52,29 @@ public class AppRunner extends Application {
         aboutButton.setOnAction(e -> {
             windowView.setCenter(aboutView);
         });
+        exitButton = new JFXButton("Exit");
+        exitButton.setOnAction(e -> {
+            mainWindow.close();
+        });
 
-        VBox groupedButtons = new VBox(trackButton, historyButton, aboutButton);
 
+        final int numRows = 10 ;
+        for (int i = 0; i < numRows; i++) {
+            RowConstraints rowConst = new RowConstraints();
+            rowConst.setPercentHeight(100.0 / numRows);
+            sideButtonsPane.getRowConstraints().add(rowConst);
+        }
+
+        GridPane.setConstraints(trackButton,0,0);
+        GridPane.setConstraints(historyButton,0,1);
+        GridPane.setConstraints(aboutButton,0,2);
+        GridPane.setConstraints(exitButton,0,9);
+        sideButtonsPane.getChildren().addAll(trackButton, historyButton, aboutButton, exitButton);
+
+        sideButtonsPane.setVgap(0);
         sideButtonsPane.setPrefWidth(150);
-        sideButtonsPane.getChildren().add(groupedButtons);
 
-        sideButtonsPane.setStyle("-fx-background-color:#AAAAAA");
+        sideButtonsPane.setStyle("-fx-background-color: #005b9f");
 
         windowView.setLeft(sideButtonsPane);
         windowView.setCenter(trackView);
