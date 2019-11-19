@@ -3,8 +3,6 @@ package com.TrackrMan;
 import com.jfoenix.controls.JFXButton;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.ContentDisplay;
@@ -28,7 +26,7 @@ public class AppRunner extends Application {
     public void start(Stage mainWindow) throws Exception {
         mainWindow.setTitle("TrackMan");
         mainWindow.setMinWidth(800);
-        mainWindow.setMinHeight(600);
+        mainWindow.setMinHeight(650);
 
         AnchorPane trackView = FXMLLoader.load(getClass().getResource("TrackPane.fxml"));
         AnchorPane aboutView = FXMLLoader.load(getClass().getResource("AboutPane.fxml"));
