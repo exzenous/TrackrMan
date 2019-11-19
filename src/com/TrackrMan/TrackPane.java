@@ -1,13 +1,21 @@
 package com.TrackrMan;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import com.jfoenix.controls.*;
 
-public class TrackPane {
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class TrackPane implements Initializable {
 
     @FXML
     private Label jumboTitle;
@@ -16,16 +24,46 @@ public class TrackPane {
     private Label subTitle;
 
     @FXML
-    private TextField inputCodeField;
+    private JFXTextField inputCodeField;
 
     @FXML
-    private ChoiceBox<?> vendorOption;
+    private JFXComboBox vendorOption;
+    private ObservableList<String> vendorList = FXCollections.observableArrayList("Thailand Post","Kerry Express", "DHL");
+    private String[] vendorColor = {"#ed1c24","#e96514","#fc0"};
 
     @FXML
-    private Button addBtn;
+    private JFXButton addToTrack;
 
     @FXML
-    private ListView<?> currentList;
+    private AnchorPane trackingList;
 
+    public void clickAdd() {
+        System.out.println(vendorOption.getValue());
+    }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        System.out.println("Starto!");
+
+        vendorOption.setItems(vendorList);
+        vendorOption.setValue(vendorList.get(0));
+        addToTrack.setStyle("-fx-background-color:" + vendorColor[0] + ";" );
+
+        vendorOption.getSelectionModel().selectedItemProperty().addListener( (observable, oldValue, newValue) -> {
+            switch (vendorList.indexOf(newValue)){
+                case 0:
+                    inputCodeField.setStyle("-jfx-focus-color: #ed1c24;");
+                    addToTrack.setStyle("-fx-background-color:" + vendorColor[vendorList.indexOf(newValue)] + ";" );
+                    break;
+                case 1:
+                    inputCodeField.setStyle("-jfx-focus-color: #e96514;");
+                    addToTrack.setStyle("-fx-background-color:" + vendorColor[vendorList.indexOf(newValue)] + ";" );
+                    break;
+                case 2:
+                    inputCodeField.setStyle("-jfx-focus-color: #c17900;");
+                    addToTrack.setStyle("-fx-background-color:" + vendorColor[vendorList.indexOf(newValue)] + ";" + "-fx-text-fill: black;");
+                    break;
+            }
+        });
+    }
 }

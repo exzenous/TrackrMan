@@ -78,7 +78,7 @@ public class AppRunner extends Application {
         windowView.setLeft(sideButtonsPane);
         windowView.setCenter(trackView);
 
-        loadedScreen.getStylesheets().add(getClass().getResource("AppStyle.css").toExternalForm());
+        sideButtonsPane.getStylesheets().add(getClass().getResource("AppStyle.css").toExternalForm());
 
         mainWindow.setScene(loadedScreen);
 
