@@ -1,6 +1,6 @@
 package com.TrackrMan;
 
-public class Parcel {
+public abstract class Parcel {
 
     private String name;
 

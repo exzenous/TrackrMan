@@ -9,13 +9,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class TrackPane implements Initializable {
+
+    ObservableList<String> trackingNowList;
 
     @FXML
     private Label jumboTitle;
@@ -35,10 +37,10 @@ public class TrackPane implements Initializable {
     private JFXButton addToTrack;
 
     @FXML
-    private AnchorPane trackingList;
+    private JFXListView<String> trackingListView;
 
     public void clickAdd() {
-        System.out.println(vendorOption.getValue());
+        trackingListView.getItems().add(inputCodeField.getText() + " " + vendorOption.getValue());
     }
 
     @Override
@@ -49,7 +51,13 @@ public class TrackPane implements Initializable {
         vendorOption.setValue(vendorList.get(0));
         addToTrack.setStyle("-fx-background-color:" + vendorColor[0] + ";" );
 
+        addToTrack.setOnAction(event -> { clickAdd(); });
+
+        trackingNowList = FXCollections.observableArrayList();
+        trackingListView.setItems(trackingNowList);
+
         vendorOption.getSelectionModel().selectedItemProperty().addListener( (observable, oldValue, newValue) -> {
+
             switch (vendorList.indexOf(newValue)){
                 case 0:
                     inputCodeField.setStyle("-jfx-focus-color: #ed1c24;");
@@ -64,6 +72,7 @@ public class TrackPane implements Initializable {
                     addToTrack.setStyle("-fx-background-color:" + vendorColor[vendorList.indexOf(newValue)] + ";" + "-fx-text-fill: black;");
                     break;
             }
+
         });
     }
 }

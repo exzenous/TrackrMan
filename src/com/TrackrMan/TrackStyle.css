@@ -10,3 +10,16 @@
     -jfx-unfocus-color: #aaa;
     -jfx-focus-color: #ed1c24;
 }
+
+.jfx-list-view {
+    -fx-background-insets: 2, 0, 0;
+    -jfx-cell-horizontal-margin: 10;
+    -jfx-cell-vertical-margin: 10;
+    -jfx-vertical-gap: 10;
+    -jfx-expanded: true;
+}
+
+.mylistview {
+    -fx-background-color: #aaa;
+
+}
