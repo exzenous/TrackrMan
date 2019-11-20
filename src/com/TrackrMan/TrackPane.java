@@ -2,28 +2,26 @@ package com.TrackrMan;
 
 import com.jfoenix.controls.*;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class TrackPane implements Initializable {
 
+    IntegerProperty numOfTrackingList = new SimpleIntegerProperty(0);
+
     ObservableList<String> trackingNowList;
-
-    @FXML
-    private Label jumboTitle;
-
-    @FXML
-    private Label subTitle;
 
     @FXML
     private JFXTextField inputCodeField;
@@ -39,13 +37,17 @@ public class TrackPane implements Initializable {
     @FXML
     private JFXListView<String> trackingListView;
 
+    @FXML
+    private HBox emptyMessage;
+
     public void clickAdd() {
-        trackingListView.getItems().add(inputCodeField.getText() + " " + vendorOption.getValue());
+        trackingNowList.add(inputCodeField.getText());
+        numOfTrackingList.set(trackingNowList.size());
+        System.out.println(numOfTrackingList.get());
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("Starto!");
 
         vendorOption.setItems(vendorList);
         vendorOption.setValue(vendorList.get(0));
@@ -55,6 +57,16 @@ public class TrackPane implements Initializable {
 
         trackingNowList = FXCollections.observableArrayList();
         trackingListView.setItems(trackingNowList);
+
+        numOfTrackingList.set(trackingNowList.size());
+        numOfTrackingList.addListener((observable, oldValue, newValue) -> {
+            if (newValue.intValue() > 0){
+                emptyMessage.setVisible(false);
+            }
+            else{
+                emptyMessage.setVisible(true);
+            }
+        });
 
         vendorOption.getSelectionModel().selectedItemProperty().addListener( (observable, oldValue, newValue) -> {
 
@@ -75,4 +87,10 @@ public class TrackPane implements Initializable {
 
         });
     }
+
+//    public void fee(ActionEvent actionEvent) {
+//        trackingNowList.remove(0);
+//        numOfTrackingList.set(trackingNowList.size());
+//        System.out.println(trackingNowList.size());
+//    }
 }
