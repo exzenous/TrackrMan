@@ -12,13 +12,11 @@
 }
 
 .jfx-list-view {
-    -fx-background-insets: 2, 0, 0;
-    -jfx-cell-horizontal-margin: 10;
-    -jfx-cell-vertical-margin: 10;
+    -fx-background-color: #aaa;
     -jfx-vertical-gap: 10;
     -jfx-expanded: true;
 }
 
-.mylistview {
-    -fx-background-color: #aaa;
+#trackingListView .jfx-list-cell {
+    -fx-pref-height: 100;
 }

@@ -7,11 +7,13 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
-import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 
 import java.net.URL;
@@ -19,9 +21,27 @@ import java.util.ResourceBundle;
 
 public class TrackPane implements Initializable {
 
+    public TrackPane() {
+
+        trackingNowList = FXCollections.observableArrayList();
+
+        trackingNowList.add(
+                new ThaiPostParcel("ASD","DSA"));
+
+        numOfTrackingList.addListener((observable, oldValue, newValue) -> {
+            if (newValue.intValue() > 0){
+                emptyMessage.setVisible(false);
+            }
+            else{
+                emptyMessage.setVisible(true);
+            }
+        });
+
+    }
+
     IntegerProperty numOfTrackingList = new SimpleIntegerProperty(0);
 
-    ObservableList<String> trackingNowList;
+    ObservableList<Parcel> trackingNowList;
 
     @FXML
     private JFXTextField inputCodeField;
@@ -35,15 +55,29 @@ public class TrackPane implements Initializable {
     private JFXButton addToTrack;
 
     @FXML
-    private JFXListView<String> trackingListView;
+    private JFXListView<Parcel> trackingListView;
 
     @FXML
     private HBox emptyMessage;
 
+    @FXML
+    private MenuItem selectedRemoveFromList;
+
+    private AnchorPane cellLoader;
+
     public void clickAdd() {
-        trackingNowList.add(inputCodeField.getText());
+        String newTrackCode = inputCodeField.getText();
+        String newTrackName = "";
+
+        switch (vendorOption.getSelectionModel().getSelectedIndex() ){
+            case 0 :
+                Parcel newItem = new ThaiPostParcel(newTrackName,newTrackCode);
+                trackingNowList.add(newItem);
+                break;
+            default:
+                break;
+        }
         numOfTrackingList.set(trackingNowList.size());
-        System.out.println(numOfTrackingList.get());
     }
 
     @Override
@@ -52,21 +86,13 @@ public class TrackPane implements Initializable {
         vendorOption.setItems(vendorList);
         vendorOption.setValue(vendorList.get(0));
         addToTrack.setStyle("-fx-background-color:" + vendorColor[0] + ";" );
-
         addToTrack.setOnAction(event -> { clickAdd(); });
 
-        trackingNowList = FXCollections.observableArrayList();
         trackingListView.setItems(trackingNowList);
+        trackingListView.setCellFactory(param -> new ParcelCell());
+        trackingListView.setEditable(true);
 
         numOfTrackingList.set(trackingNowList.size());
-        numOfTrackingList.addListener((observable, oldValue, newValue) -> {
-            if (newValue.intValue() > 0){
-                emptyMessage.setVisible(false);
-            }
-            else{
-                emptyMessage.setVisible(true);
-            }
-        });
 
         vendorOption.getSelectionModel().selectedItemProperty().addListener( (observable, oldValue, newValue) -> {
 
@@ -86,11 +112,17 @@ public class TrackPane implements Initializable {
             }
 
         });
+
+        Image trashImage = new Image(getClass().getResourceAsStream("img/icons8-filled_trash.png"),20,20,true,true);
+        ImageView trashImageView = new ImageView(trashImage);
+        selectedRemoveFromList.setGraphic(trashImageView);
+
+        selectedRemoveFromList.setOnAction(event -> {
+            trackingNowList.remove(trackingListView.getSelectionModel().getSelectedIndex());
+            trackingListView.setItems(trackingNowList);
+            numOfTrackingList.set(trackingNowList.size());
+
+        });
     }
 
-//    public void fee(ActionEvent actionEvent) {
-//        trackingNowList.remove(0);
-//        numOfTrackingList.set(trackingNowList.size());
-//        System.out.println(trackingNowList.size());
-//    }
 }
