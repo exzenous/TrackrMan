@@ -27,7 +27,7 @@ public class ParcelCell extends JFXListCell<Parcel> {
     @FXML
     private Label parcelCode;
 
-    private FXMLLoader cellLoader = new FXMLLoader(getClass().getResource("ParcelCell.fxml"));
+    private FXMLLoader cellLoader = new FXMLLoader(getClass().getResource("fxml/ParcelCell.fxml"));
 
     @Override
     protected void updateItem(Parcel item, boolean empty){

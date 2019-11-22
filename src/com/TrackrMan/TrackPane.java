@@ -24,13 +24,6 @@ public class TrackPane implements Initializable {
 
         trackingNowList = FXCollections.observableArrayList();
 
-        trackingNowList.addAll(
-                new ThaiPostParcel("ITEM1","ITEM1"),
-                new KerryParcel("ITEM2","ITEM2"),
-                new DHLParcel("ITEM3","ITEM3"),
-                new ThaiPostParcel("ITEM4","ITEM4")
-        );
-
         numOfTrackingList.addListener((observable, oldValue, newValue) -> {
             if (newValue.intValue() > 0){
                 emptyMessage.setVisible(false);

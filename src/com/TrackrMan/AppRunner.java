@@ -27,8 +27,8 @@ public class AppRunner extends Application {
         mainWindow.setMinWidth(1280);
         mainWindow.setMinHeight(960);
 
-        AnchorPane trackView = FXMLLoader.load(getClass().getResource("TrackPane.fxml"));
-        AnchorPane aboutView = FXMLLoader.load(getClass().getResource("AboutPane.fxml"));
+        AnchorPane trackView = FXMLLoader.load(getClass().getResource("fxml/TrackPane.fxml"));
+        AnchorPane aboutView = FXMLLoader.load(getClass().getResource("fxml/AboutPane.fxml"));
 
         wholeWindowView = new BorderPane();
 
@@ -81,7 +81,7 @@ public class AppRunner extends Application {
         wholeWindowView.setLeft(sideButtonsView);
         wholeWindowView.setCenter(trackView);
 
-        sideButtonsView.getStylesheets().add(getClass().getResource("AppStyle.css").toExternalForm());
+        sideButtonsView.getStylesheets().add(getClass().getResource("css/AppStyle.css").toExternalForm());
 
         mainWindow.setScene(loadedScreen);
 
