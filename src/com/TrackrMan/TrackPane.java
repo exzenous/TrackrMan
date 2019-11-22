@@ -63,6 +63,7 @@ public class TrackPane implements Initializable {
         String newTrackCode = inputCodeField.getText();
         String newTrackName = "";
         Parcel newItem;
+
         switch (vendorOption.getSelectionModel().getSelectedIndex() ){
             case 0 :
                 newItem = new ThaiPostParcel(newTrackName,newTrackCode);
