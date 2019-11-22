@@ -13,7 +13,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 
 import java.net.URL;
@@ -25,8 +24,12 @@ public class TrackPane implements Initializable {
 
         trackingNowList = FXCollections.observableArrayList();
 
-        trackingNowList.add(
-                new ThaiPostParcel("ASD","DSA"));
+        trackingNowList.addAll(
+                new ThaiPostParcel("ITEM1","ITEM1"),
+                new KerryParcel("ITEM2","ITEM2"),
+                new DHLParcel("ITEM3","ITEM3"),
+                new ThaiPostParcel("ITEM4","ITEM4")
+        );
 
         numOfTrackingList.addListener((observable, oldValue, newValue) -> {
             if (newValue.intValue() > 0){
@@ -63,15 +66,21 @@ public class TrackPane implements Initializable {
     @FXML
     private MenuItem selectedRemoveFromList;
 
-    private AnchorPane cellLoader;
-
     public void clickAdd() {
         String newTrackCode = inputCodeField.getText();
         String newTrackName = "";
-
+        Parcel newItem;
         switch (vendorOption.getSelectionModel().getSelectedIndex() ){
             case 0 :
-                Parcel newItem = new ThaiPostParcel(newTrackName,newTrackCode);
+                newItem = new ThaiPostParcel(newTrackName,newTrackCode);
+                trackingNowList.add(newItem);
+                break;
+            case 1 :
+                newItem = new KerryParcel(newTrackName,newTrackCode);
+                trackingNowList.add(newItem);
+                break;
+            case 2 :
+                newItem = new DHLParcel(newTrackName,newTrackCode);
                 trackingNowList.add(newItem);
                 break;
             default:

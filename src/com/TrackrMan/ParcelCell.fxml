@@ -6,7 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="150.0" prefWidth="50.0" stylesheets="" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="150.0" prefWidth="50.0" stylesheets="@ParcelCell.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <left>
         <AnchorPane fx:id="vendorImage" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #ccc;" BorderPane.alignment="CENTER" />
     </left>

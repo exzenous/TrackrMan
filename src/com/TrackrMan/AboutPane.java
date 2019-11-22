@@ -9,7 +9,7 @@ import java.util.ResourceBundle;
 public class AboutPane implements Initializable {
 
     public String version = "alpha0.2";
-    public String buildNumber = "0018";
+    public String buildNumber = "0050";
     public Label versionLabel;
 
     @Override

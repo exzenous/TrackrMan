@@ -5,6 +5,7 @@ public abstract class Parcel{
     private String name;
     private String trackCode;
     private String status;
+    private String vendorTag;
 
     public Parcel(String name, String trackCode) {
         this.name = name;
@@ -32,4 +33,7 @@ public abstract class Parcel{
         this.status = status;
     }
 
+    public String getVendorTag() { return vendorTag; }
+
+    public void setVendorTag(String vendorTag) { this.vendorTag = vendorTag; }
 }

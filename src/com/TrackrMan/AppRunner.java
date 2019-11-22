@@ -25,7 +25,7 @@ public class AppRunner extends Application {
     public void start(Stage mainWindow) throws Exception {
         mainWindow.setTitle("TrackMan");
         mainWindow.setMinWidth(1280);
-        mainWindow.setMinHeight(786);
+        mainWindow.setMinHeight(960);
 
         AnchorPane trackView = FXMLLoader.load(getClass().getResource("TrackPane.fxml"));
         AnchorPane aboutView = FXMLLoader.load(getClass().getResource("AboutPane.fxml"));
@@ -34,7 +34,7 @@ public class AppRunner extends Application {
 
         sideButtonsView = new BorderPane();
 
-        Scene loadedScreen = new Scene(wholeWindowView,1280,786);
+        Scene loadedScreen = new Scene(wholeWindowView,1280,960);
 
         //Init Sidebar Button Start Block
         Image imageSearch = new Image(getClass().getResourceAsStream("img/icons8-search_filled.png"));
