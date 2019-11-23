@@ -147,12 +147,21 @@ public class TrackPane implements Initializable {
 
         //When click to remove from List Event Handler Block Start
         selectedRemoveFromList.setOnAction(event -> {
-            trackingNowList.remove(trackingListView.getSelectionModel().getSelectedIndex());
-            trackingListView.setItems(trackingNowList);
-            numOfTrackingList.set(trackingNowList.size());
+            Boolean confirmBool = AlertBox.AskForConfirm("Confirmation", "Are you sure you want to remove this?");
+
+            if (confirmBool) {
+                trackingNowList.remove(trackingListView.getSelectionModel().getSelectedIndex());
+                trackingListView.setItems(trackingNowList);
+                numOfTrackingList.set(trackingNowList.size());
+            }
 
         });
         //When click to remove from List Event Handler Block Start
+
+        //Auto Capitalize in TextField
+        inputCodeField.textProperty().addListener((observable, oldValue, newValue) -> {
+            inputCodeField.setText(newValue.toUpperCase());
+        });
     }
 
 }

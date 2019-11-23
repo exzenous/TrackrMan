@@ -2,6 +2,7 @@ package com.TrackrMan;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import javafx.event.Event;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -25,6 +26,9 @@ public class AlertBox {
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle(title);
         window.setResizable(false);
+        window.setOnCloseRequest(event -> {
+            event.consume();
+        });
 
         Label msg = new Label(message);
 
@@ -80,6 +84,49 @@ public class AlertBox {
         else{
             return nameParcel.getText();
         }
+
+    }
+
+    public static Boolean AskForConfirm(String title, String message){
+        Stage window = new Stage();
+        window.initModality(Modality.APPLICATION_MODAL);
+        window.setTitle(title);
+        window.setResizable(false);
+        window.setOnCloseRequest(Event::consume);
+
+        HBox imageBox = new HBox(new ImageView(new Image("/img/alert-warn.png")));
+        imageBox.setAlignment(Pos.CENTER);
+        Label msg = new Label(message);
+        JFXButton yesButton, noButton;
+
+        yesButton = new JFXButton("Yes");
+        yesButton.setOnAction(e -> {
+            answer = true; window.close();
+        });
+        yesButton.getStyleClass().add("button-yes");
+
+        noButton = new JFXButton("No");
+        noButton.setOnAction(e -> {
+            answer = false; window.close();
+        });
+        noButton.getStyleClass().add("button-no");
+
+        HBox groupButton = new HBox(yesButton,noButton);
+        groupButton.setSpacing(20);
+        groupButton.setAlignment(Pos.CENTER);
+        groupButton.getStylesheets().add("/css/ButtonAlert.css");
+        HBox messageBox = new HBox(imageBox,msg);
+        messageBox.setSpacing(20);
+        messageBox.setAlignment(Pos.CENTER);
+        VBox groupBox = new VBox(20);
+        groupBox.getChildren().addAll(messageBox,groupButton);
+        groupBox.setPadding(new Insets(20,20,20,20));
+
+        window.setScene(new Scene(groupBox));
+
+        window.showAndWait();
+
+        return answer;
 
     }
 

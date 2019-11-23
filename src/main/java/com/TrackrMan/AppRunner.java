@@ -47,7 +47,7 @@ public class AppRunner extends Application {
 
         Image imageHistory = new Image(getClass().getResourceAsStream("/img/knowledge.png"));
         ImageView imageHistoryView = new ImageView(imageHistory);
-        historyButton = new JFXButton("History",imageHistoryView);
+        historyButton = new JFXButton("Knowledge",imageHistoryView);
         historyButton.setContentDisplay(ContentDisplay.TOP);
         historyButton.setOnAction(e -> {
             System.out.println("AppRunner.start");
