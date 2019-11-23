@@ -116,7 +116,7 @@ public class TrackPane implements Initializable {
 
         });
 
-        Image trashImage = new Image(getClass().getResourceAsStream("img/icons8-filled_trash.png"),20,20,true,true);
+        Image trashImage = new Image(getClass().getResourceAsStream("/img/icons8-filled_trash.png"),20,20,true,true);
         ImageView trashImageView = new ImageView(trashImage);
         selectedRemoveFromList.setGraphic(trashImageView);
 
