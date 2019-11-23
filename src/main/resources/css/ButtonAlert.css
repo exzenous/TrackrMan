@@ -1,0 +1,20 @@
+.button-yes{
+    -fx-font-size: 14px;
+    -fx-background-color: #90a4ae;
+    -fx-pref-width: 100;
+    -fx-text-fill: WHITE;
+}
+
+.button-no{
+    -fx-font-size: 14px;
+    -fx-background-color: #f44336;
+    -fx-pref-width: 100;
+    -fx-text-fill: WHITE;
+}
+
+.button-ok{
+    -fx-font-size: 14px;
+    -fx-background-color: #8bc34a;
+    -fx-pref-width: 100;
+    -fx-text-fill: WHITE;
+}

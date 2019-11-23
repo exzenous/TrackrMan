@@ -70,7 +70,6 @@ public class TrackPane implements Initializable {
     public void clickAdd() {
         String newTrackCode = inputCodeField.getText();
 
-
         if ( (newTrackCode.trim()).equals("") ) {
             System.out.println("Empty Box");
             AlertBox.ErrorMsgNoReply("Error!","Please enter Tracking Code.");

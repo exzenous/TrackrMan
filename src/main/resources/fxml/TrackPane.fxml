@@ -15,94 +15,82 @@
 
 <?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.MenuItem?>
-<AnchorPane minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.TrackrMan.TrackPane" stylesheets="@../css/TrackStyle.css">
-   <children>
-      <GridPane layoutX="118.0" layoutY="97.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5F5F6#F5F5F6;">
-               <children>
-                  <VBox alignment="CENTER" layoutX="22.0" layoutY="114.0" spacing="20.0" style="-fx-padding: 20;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <VBox alignment="TOP_CENTER">
-                           <children>
-                              <Label fx:id="jumboTitle" text="TrackMan" textAlignment="CENTER">
-                                 <font>
-                                    <Font size="40.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="subTitle" text="Let's Start Track!">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </VBox>
-                        <Separator prefWidth="200.0" />
-                        <VBox alignment="CENTER" spacing="5.0" >
-                           <children>
-                              <Label text="Please Select a Vendor" textAlignment="CENTER" >
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <JFXComboBox fx:id="vendorOption" prefHeight="25.0" prefWidth="225.0">
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" />
-                                 </VBox.margin>
-                              </JFXComboBox>
-                              <Separator prefWidth="200.0" />
-                              <JFXTextField fx:id="inputCodeField" prefHeight="37.0" prefWidth="350.0" promptText="Enter Your Track Code Here" >
-                                 <VBox.margin>
-                                    <Insets top="15.0" />
-                                 </VBox.margin>
-                              </JFXTextField>
-                              <JFXButton fx:id="addToTrack" text="Add to Track" styleClass="button-raised" >
-                                 <VBox.margin>
-                                    <Insets top="15.0" />
-                                 </VBox.margin>
-                              </JFXButton>
-                           </children>
-                        </VBox>
-                     </children>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <padding>
-                        <Insets left="20.0" right="20.0" />
-                     </padding>
-                  </VBox>
-               </children>
-            </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #bbc;"
-                        GridPane.columnIndex="1">
-               <JFXListView fx:id="trackingListView" styleClass="mylistview" layoutX="47.0" layoutY="52.0"
-                            AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                            AnchorPane.topAnchor="0.0" >
-                  <contextMenu>
-                     <ContextMenu>
-                        <items>
-                           <MenuItem fx:id="selectedRemoveFromList" mnemonicParsing="false" text="Remove" />
-                        </items>
-                     </ContextMenu>
-                  </contextMenu>
-               </JFXListView>
-               <HBox fx:id="emptyMessage" alignment="CENTER" prefHeight="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                     AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                  <Label text="Nothing to Show,&#10;Add Some Parcel." textAlignment="CENTER">
-                     <font>
-                        <Font size="24.0"/>
-                     </font>
-                  </Label>
-               </HBox>
-            </AnchorPane>
-         </children>
-      </GridPane>
-   </children>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<AnchorPane minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.TrackrMan.TrackPane" stylesheets="@../css/TrackStyle.css">
+   <GridPane layoutX="118.0" layoutY="97.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0"
+             AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <columnConstraints>
+         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+      </columnConstraints>
+      <rowConstraints>
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+      </rowConstraints>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5F5F6#F5F5F6;">
+         <VBox alignment="CENTER" layoutX="22.0" layoutY="114.0" spacing="20.0" style="-fx-padding: 20;"
+               AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+               AnchorPane.topAnchor="0.0">
+            <opaqueInsets>
+               <Insets/>
+            </opaqueInsets>
+            <padding>
+               <Insets left="20.0" right="20.0"/>
+            </padding>
+            <VBox alignment="TOP_CENTER">
+               <ImageView fitWidth="400.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="/img/hero_logo.png"/>
+               </ImageView>
+            </VBox>
+            <Separator prefWidth="200.0"/>
+            <VBox alignment="CENTER" spacing="5.0">
+               <Label text="Please Select a Vendor" textAlignment="CENTER">
+                  <VBox.margin>
+                     <Insets bottom="10.0"/>
+                  </VBox.margin>
+               </Label>
+               <JFXComboBox fx:id="vendorOption" prefHeight="25.0" prefWidth="225.0">
+                  <VBox.margin>
+                     <Insets bottom="10.0"/>
+                  </VBox.margin>
+               </JFXComboBox>
+               <Separator prefWidth="200.0"/>
+               <JFXTextField fx:id="inputCodeField" prefHeight="37.0" prefWidth="350.0"
+                             promptText="Enter Your Track Code Here">
+                  <VBox.margin>
+                     <Insets top="15.0"/>
+                  </VBox.margin>
+               </JFXTextField>
+               <JFXButton fx:id="addToTrack" text="Add to Track" styleClass="button-raised">
+                  <VBox.margin>
+                     <Insets top="15.0"/>
+                  </VBox.margin>
+               </JFXButton>
+            </VBox>
+         </VBox>
+      </AnchorPane>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #bbc;"
+                  GridPane.columnIndex="1">
+         <JFXListView fx:id="trackingListView" styleClass="mylistview" layoutX="47.0" layoutY="52.0"
+                      AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                      AnchorPane.topAnchor="0.0">
+            <contextMenu>
+               <ContextMenu>
+                  <items>
+                     <MenuItem fx:id="selectedRemoveFromList" mnemonicParsing="false" text="Remove"/>
+                  </items>
+               </ContextMenu>
+            </contextMenu>
+         </JFXListView>
+         <HBox fx:id="emptyMessage" alignment="CENTER" prefHeight="200.0" AnchorPane.bottomAnchor="0.0"
+               AnchorPane.leftAnchor="0.0"
+               AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <ImageView fitHeight="278.0" fitWidth="204.0" pickOnBounds="true" preserveRatio="true">
+               <Image url="/img/empty_list_img.png"/>
+            </ImageView>
+         </HBox>
+      </AnchorPane>
+   </GridPane>
 </AnchorPane>

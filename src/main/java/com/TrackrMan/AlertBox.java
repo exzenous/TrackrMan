@@ -7,10 +7,13 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+import java.awt.*;
 
 public class AlertBox {
 
@@ -26,32 +29,50 @@ public class AlertBox {
         Label msg = new Label(message);
 
         JFXTextField nameParcel = new JFXTextField();
+        nameParcel.setPromptText("Enter a Name");
 
         JFXButton yesButton, noButton;
 
         yesButton = new JFXButton("Yes");
         yesButton.setOnAction(e -> {
             if ((nameParcel.getText().trim()).equals("")) {
-                AlertBox.ErrorMsgNoReply("Error!","You haven't enter any name.");
+                AlertBox.ErrorMsgNoReply("Error!","You haven't entered any name.");
             }
             else {
                 answer = true;
                 window.close();
             }
         });
+        yesButton.getStyleClass().add("button-yes");
+
         noButton = new JFXButton("No");
         noButton.setOnAction(e -> {answer = false;window.close();});
+        noButton.getStyleClass().add("button-no");
+
+        BorderPane boxMessage = new BorderPane();
+
+        VBox groupPrompt = new VBox(20);
+        groupPrompt.getChildren().addAll(msg,nameParcel);
+        ImageView alertImage = new ImageView(new Image("/img/alert-info.png"));
+        HBox foo = new HBox(alertImage);
+        foo.setAlignment(Pos.CENTER);
+        foo.setPadding(new Insets(0,20,0,0));
+        boxMessage.setCenter(groupPrompt);
+        boxMessage.setLeft(foo);
+
+        //Group Button
         HBox groupButton = new HBox(yesButton,noButton);
         groupButton.setAlignment(Pos.CENTER);
+        groupButton.getStylesheets().add("/css/ButtonAlert.css");
+        groupButton.setSpacing(20);
 
+        //Whole Scene
         VBox groupBox = new VBox(20);
-        groupBox.getChildren().addAll(msg,nameParcel,groupButton);
-
         groupBox.setPadding(new Insets(20,20,20,20));
+        groupBox.getChildren().addAll(boxMessage,groupButton);
 
-        Scene scene = new Scene(groupBox);
-
-        window.setScene(scene);window.showAndWait();
+        window.setScene(new Scene(groupBox));
+        window.showAndWait();
 
         if(!answer){
             return "Untitled Parcel";
@@ -69,16 +90,24 @@ public class AlertBox {
         window.setTitle(title);
         window.setResizable(false);
 
+        HBox imageBox = new HBox(new ImageView(new Image("/img/alert-warn.png")));
+        imageBox.setAlignment(Pos.CENTER);
         Label msg = new Label(message);
         JFXButton okButton;
 
         okButton = new JFXButton("OK");
         okButton.setOnAction(e -> {window.close(); });
+        okButton.getStyleClass().add("button-ok");
         HBox groupButton = new HBox(okButton);
         groupButton.setAlignment(Pos.CENTER);
+        groupButton.getStylesheets().add("/css/ButtonAlert.css");
+
+        HBox groupMsg = new HBox(imageBox,msg);
+        groupMsg.setAlignment(Pos.CENTER);
+        groupMsg.setSpacing(20);
 
         VBox groupBox = new VBox(20);
-        groupBox.getChildren().addAll(msg,groupButton);
+        groupBox.getChildren().addAll(groupMsg,groupButton);
 
         groupBox.setPadding(new Insets(20,20,20,20));
 
@@ -86,6 +115,7 @@ public class AlertBox {
 
         window.setScene(scene);
         window.show();
+        Toolkit.getDefaultToolkit().beep();
 
     }
 
