@@ -21,9 +21,12 @@ import java.util.ResourceBundle;
 public class TrackPane implements Initializable {
 
     public TrackPane() {
+        //Pull off List of Data Every Time on Launch
 
+        //Create Array (Obserable)
         trackingNowList = FXCollections.observableArrayList();
 
+        //Add Listener when number of items is updated
         numOfTrackingList.addListener((observable, oldValue, newValue) -> {
             if (newValue.intValue() > 0){
                 emptyMessage.setVisible(false);
@@ -35,10 +38,13 @@ public class TrackPane implements Initializable {
 
     }
 
+    //Number of Items
     IntegerProperty numOfTrackingList = new SimpleIntegerProperty(0);
 
+    //List for ListView to Show
     ObservableList<Parcel> trackingNowList;
 
+    //FXML UI Linking Block Start
     @FXML
     private JFXTextField inputCodeField;
 
@@ -58,45 +64,63 @@ public class TrackPane implements Initializable {
 
     @FXML
     private MenuItem selectedRemoveFromList;
+    //FXML UI Linking Block End
 
+    //When click on Add Event Handler Block Start
     public void clickAdd() {
         String newTrackCode = inputCodeField.getText();
-        String newTrackName = "";
-        Parcel newItem;
 
-        switch (vendorOption.getSelectionModel().getSelectedIndex() ){
-            case 0 :
-                newItem = new ThaiPostParcel(newTrackName,newTrackCode);
-                trackingNowList.add(newItem);
-                break;
-            case 1 :
-                newItem = new KerryParcel(newTrackName,newTrackCode);
-                trackingNowList.add(newItem);
-                break;
-            case 2 :
-                newItem = new DHLParcel(newTrackName,newTrackCode);
-                trackingNowList.add(newItem);
-                break;
-            default:
-                break;
+
+        if ( (newTrackCode.trim()).equals("") ) {
+            System.out.println("Empty Box");
+            AlertBox.ErrorMsgNoReply("Error!","Please enter Tracking Code.");
         }
-        numOfTrackingList.set(trackingNowList.size());
+        else{
+            Parcel newItem;
+            String newTrackName = AlertBox.AskForNaming("Before Continue", "Do you want to add a name for your parcel?");
+            switch (vendorOption.getSelectionModel().getSelectedIndex() ){
+                case 0 :
+                    newItem = new ThaiPostParcel(newTrackName,newTrackCode);
+                    trackingNowList.add(newItem);
+                    break;
+                case 1 :
+                    newItem = new KerryParcel(newTrackName,newTrackCode);
+                    trackingNowList.add(newItem);
+                    break;
+                case 2 :
+                    newItem = new DHLParcel(newTrackName,newTrackCode);
+                    trackingNowList.add(newItem);
+                    break;
+                default:
+                    break;
+            }
+            numOfTrackingList.set(trackingNowList.size());
+            inputCodeField.setText("");
+        }
     }
+    //When click on Add Event Handler Block Start
 
+    //Initialization when view is added
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        //Set Vendor Option to Choice 1
         vendorOption.setItems(vendorList);
         vendorOption.setValue(vendorList.get(0));
+
+        //Set Add Button Style and Action
         addToTrack.setStyle("-fx-background-color:" + vendorColor[0] + ";" );
         addToTrack.setOnAction(event -> { clickAdd(); });
 
+        //Set ListView to Show Items from List, Set Appearance of List Cell
         trackingListView.setItems(trackingNowList);
         trackingListView.setCellFactory(param -> new ParcelCell());
         trackingListView.setEditable(true);
 
+        //Reload Number of List
         numOfTrackingList.set(trackingNowList.size());
 
+        //When click to change Vendor Event Handler Block Start
         vendorOption.getSelectionModel().selectedItemProperty().addListener( (observable, oldValue, newValue) -> {
 
             switch (vendorList.indexOf(newValue)){
@@ -115,17 +139,21 @@ public class TrackPane implements Initializable {
             }
 
         });
+        //When click to change Vendor Event Handler Block End
 
+        //Set Image within ContextMenu
         Image trashImage = new Image(getClass().getResourceAsStream("/img/icons8-filled_trash.png"),20,20,true,true);
         ImageView trashImageView = new ImageView(trashImage);
         selectedRemoveFromList.setGraphic(trashImageView);
 
+        //When click to remove from List Event Handler Block Start
         selectedRemoveFromList.setOnAction(event -> {
             trackingNowList.remove(trackingListView.getSelectionModel().getSelectedIndex());
             trackingListView.setItems(trackingNowList);
             numOfTrackingList.set(trackingNowList.size());
 
         });
+        //When click to remove from List Event Handler Block Start
     }
 
 }
