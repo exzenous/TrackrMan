@@ -54,6 +54,8 @@ public class ParcelCell extends JFXListCell<Parcel> {
         this.vendorImage.getStyleClass().addAll("parcel",p.getVendorTag());
         this.parcelName.setText(p.getName());
         this.parcelCode.setText(p.getTrackCode());
+        System.out.println(p.getStatus());
+        this.statusImage.getStyleClass().addAll("status-image",p.getStatus());
     }
 
 }

@@ -7,4 +7,8 @@ public class ThaiPostParcel extends Parcel {
         setVendorTag("thailandpost");
     }
 
+    public void trackThis(){
+        setStatus("deposit");
+    }
+
 }

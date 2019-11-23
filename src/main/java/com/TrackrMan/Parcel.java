@@ -36,4 +36,6 @@ public abstract class Parcel{
     public String getVendorTag() { return vendorTag; }
 
     public void setVendorTag(String vendorTag) { this.vendorTag = vendorTag; }
+
+    public void trackThis(){ }
 }

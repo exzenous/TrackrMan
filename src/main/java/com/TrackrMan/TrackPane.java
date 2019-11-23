@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 
 import java.net.URL;
@@ -80,19 +81,23 @@ public class TrackPane implements Initializable {
             switch (vendorOption.getSelectionModel().getSelectedIndex() ){
                 case 0 :
                     newItem = new ThaiPostParcel(newTrackName,newTrackCode);
+                    newItem.trackThis();
                     trackingNowList.add(newItem);
                     break;
                 case 1 :
                     newItem = new KerryParcel(newTrackName,newTrackCode);
+                    newItem.trackThis();
                     trackingNowList.add(newItem);
                     break;
                 case 2 :
                     newItem = new DHLParcel(newTrackName,newTrackCode);
+                    newItem.trackThis();
                     trackingNowList.add(newItem);
                     break;
                 default:
                     break;
             }
+
             numOfTrackingList.set(trackingNowList.size());
             inputCodeField.setText("");
         }
@@ -161,6 +166,13 @@ public class TrackPane implements Initializable {
         //Auto Capitalize in TextField
         inputCodeField.textProperty().addListener((observable, oldValue, newValue) -> {
             inputCodeField.setText(newValue.toUpperCase());
+        });
+
+        //When pressed Enter on Textfield
+        inputCodeField.setOnKeyPressed(event -> {
+            if ( (event.getCode()).equals(KeyCode.ENTER) ) {
+                clickAdd();
+            }
         });
     }
 

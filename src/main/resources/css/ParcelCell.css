@@ -1,8 +1,7 @@
-.parcel {
+.parcel , .status {
      -fx-background-position: center;
      -fx-background-size: 100%;
      -fx-background-repeat: no-repeat;
-     -fx-background-image: url("../img/THAIPOST-logo.jpg");
 }
 
 .thailandpost {
@@ -13,4 +12,9 @@
 }
 .dhl {
     -fx-background-image: url("../img/DHL-logo.jpg");
+}
+
+.deposit {
+    -fx-background-image: url("../img/status/103.png");
+    -fx-background-color: #b0ff57;
 }

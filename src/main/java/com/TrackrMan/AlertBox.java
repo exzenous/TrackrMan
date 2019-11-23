@@ -6,10 +6,10 @@ import javafx.event.Event;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -75,7 +75,16 @@ public class AlertBox {
         groupBox.setPadding(new Insets(20,20,20,20));
         groupBox.getChildren().addAll(boxMessage,groupButton);
 
-        window.setScene(new Scene(groupBox));
+        Scene scene = new Scene(groupBox);
+
+        nameParcel.setOnKeyPressed(event -> {
+            if ( (event.getCode()).equals(KeyCode.ENTER) ) {
+                yesButton.fire();
+            }
+        });
+
+        window.setScene(scene);
+
         window.showAndWait();
 
         if(!answer){
@@ -122,7 +131,13 @@ public class AlertBox {
         groupBox.getChildren().addAll(messageBox,groupButton);
         groupBox.setPadding(new Insets(20,20,20,20));
 
-        window.setScene(new Scene(groupBox));
+        Scene scene = new Scene(groupBox);
+        scene.setOnKeyPressed(event -> {
+            if ( (event.getCode()).equals(KeyCode.ENTER) ) {
+                yesButton.fire();
+            }
+        });
+        window.setScene(scene);
 
         window.showAndWait();
 
@@ -159,9 +174,15 @@ public class AlertBox {
         groupBox.setPadding(new Insets(20,20,20,20));
 
         Scene scene = new Scene(groupBox);
+        scene.setOnKeyPressed(event -> {
+            if ( (event.getCode()).equals(KeyCode.ENTER) ) {
+                okButton.fire();
+            }
+        });
 
         window.setScene(scene);
         window.show();
+
         Toolkit.getDefaultToolkit().beep();
 
     }
