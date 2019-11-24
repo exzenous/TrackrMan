@@ -2,8 +2,6 @@ package com.TrackrMan;
 
 import com.jfoenix.controls.*;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -14,6 +12,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 
 import java.net.URL;
@@ -22,13 +21,11 @@ import java.util.ResourceBundle;
 public class TrackViewController implements Initializable {
 
     public TrackViewController() {
-        //Pull off List of Data Every Time on Launch
 
-        //Create Array (Obserable)
-        trackingNowList = FXCollections.observableArrayList();
+        trackingList = new TrackCollection();
 
         //Add Listener when number of items is updated
-        numOfTrackingList.addListener((observable, oldValue, newValue) -> {
+        trackingList.getNumOfTrackingList().addListener((observable, oldValue, newValue) -> {
             if (newValue.intValue() > 0){
                 emptyMessage.setVisible(false);
             }
@@ -36,16 +33,16 @@ public class TrackViewController implements Initializable {
                 emptyMessage.setVisible(true);
             }
         });
-
     }
 
-    //Number of Items
-    IntegerProperty numOfTrackingList = new SimpleIntegerProperty(0);
+    // Attribute Block START
+        // List for ListView to Show
+    private TrackCollection trackingList;
 
-    //List for ListView to Show
-    ObservableList<Parcel> trackingNowList;
+        // FXML UI Linking Block Start
+    @FXML
+    private JFXListView<Parcel> trackingListView;
 
-    //FXML UI Linking Block Start
     @FXML
     private JFXTextField inputCodeField;
 
@@ -58,16 +55,14 @@ public class TrackViewController implements Initializable {
     private JFXButton addToTrack;
 
     @FXML
-    private JFXListView<Parcel> trackingListView;
-
-    @FXML
     private HBox emptyMessage;
 
     @FXML
     private MenuItem selectedRemoveFromList;
-    //FXML UI Linking Block End
+        // FXML UI Linking Block End
+    // Attribute Block START
 
-    //When click on Add Event Handler Block Start
+    //When click on Add Event Handler Block
     public void clickAdd() {
         String newTrackCode = inputCodeField.getText();
 
@@ -82,31 +77,32 @@ public class TrackViewController implements Initializable {
                 case 0 :
                     newItem = new ThaiPostParcel(newTrackName,newTrackCode);
                     newItem.trackThis();
-                    trackingNowList.add(newItem);
+                    trackingList.getTrackingList().add(newItem);
                     break;
                 case 1 :
                     newItem = new KerryParcel(newTrackName,newTrackCode);
                     newItem.trackThis();
-                    trackingNowList.add(newItem);
+                    trackingList.getTrackingList().add(newItem);
                     break;
                 case 2 :
                     newItem = new DHLParcel(newTrackName,newTrackCode);
                     newItem.trackThis();
-                    trackingNowList.add(newItem);
+                    trackingList.getTrackingList().add(newItem);
                     break;
                 default:
                     break;
             }
 
-            numOfTrackingList.set(trackingNowList.size());
+            trackingList.getNumOfTrackingList().set(trackingList.getTrackingList().size());
             inputCodeField.setText("");
         }
     }
-    //When click on Add Event Handler Block Start
 
     //Initialization when view is added
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+
 
         //Set Vendor Option to Choice 1
         vendorOption.setItems(vendorList);
@@ -117,17 +113,13 @@ public class TrackViewController implements Initializable {
         addToTrack.setOnAction(event -> { clickAdd(); });
 
         //Set ListView to Show Items from List, Set Appearance of List Cell
-        trackingListView.setItems(trackingNowList);
-        trackingListView.setCellFactory(param -> {
-            ParcelListCell cell = new ParcelListCell();
-            return cell;
-        });
-        trackingListView.setEditable(true);
+        trackingListView.setItems(trackingList.getTrackingList());
+        trackingListView.setCellFactory(param -> new ParcelListCell());
 
         //Reload Number of List
-        numOfTrackingList.set(trackingNowList.size());
+        trackingList.getNumOfTrackingList().set(trackingList.getTrackingList().size());
 
-        //When click to change Vendor Event Handler Block Start
+        //When click to change Vendor Event Handler Block
         vendorOption.getSelectionModel().selectedItemProperty().addListener( (observable, oldValue, newValue) -> {
 
             switch (vendorList.indexOf(newValue)){
@@ -146,25 +138,20 @@ public class TrackViewController implements Initializable {
             }
 
         });
-        //When click to change Vendor Event Handler Block End
 
         //Set Image within ContextMenu
         Image trashImage = new Image(getClass().getResourceAsStream("/img/icons8-filled_trash.png"),20,20,true,true);
         ImageView trashImageView = new ImageView(trashImage);
         selectedRemoveFromList.setGraphic(trashImageView);
-
-        //When click to remove from List Event Handler Block Start
+            //When click to remove from List Event Handler Block
         selectedRemoveFromList.setOnAction(event -> {
             Boolean confirmBool = AlertBox.AskForConfirm("Confirmation", "Are you sure you want to remove this?");
-
             if (confirmBool) {
-                trackingNowList.remove(trackingListView.getSelectionModel().getSelectedIndex());
-                trackingListView.setItems(trackingNowList);
-                numOfTrackingList.set(trackingNowList.size());
+                trackingList.getTrackingList().remove(trackingListView.getSelectionModel().getSelectedIndex());
+                trackingListView.setItems(trackingList.getTrackingList());
+                trackingList.getNumOfTrackingList().set(trackingList.getTrackingList().size());
             }
-
         });
-        //When click to remove from List Event Handler Block Start
 
         //Auto Capitalize in TextField
         inputCodeField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -179,4 +166,11 @@ public class TrackViewController implements Initializable {
         });
     }
 
+    public TrackCollection getTrackingList() {
+        return trackingList;
+    }
+
+    public void setTrackingList(TrackCollection trackingList) {
+        this.trackingList = trackingList;
+    }
 }

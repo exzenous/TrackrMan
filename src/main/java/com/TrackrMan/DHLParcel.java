@@ -6,4 +6,12 @@ public class DHLParcel extends Parcel {
         super(name, trackCode);
         setVendorTag("dhl");
     }
+
+    public void trackThis(){
+        setStatus("deposit");
+        System.out.println();
+        System.out.println();
+        System.out.println();
+    }
+
 }

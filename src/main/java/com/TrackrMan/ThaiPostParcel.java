@@ -9,6 +9,9 @@ public class ThaiPostParcel extends Parcel {
 
     public void trackThis(){
         setStatus("deposit");
+        System.out.println();
+        System.out.println();
+        System.out.println();
     }
 
 }

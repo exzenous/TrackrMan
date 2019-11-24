@@ -7,4 +7,11 @@ public class KerryParcel extends Parcel {
         setVendorTag("kerry");
     }
 
+    public void trackThis(){
+        setStatus("deposit");
+        System.out.println();
+        System.out.println();
+        System.out.println();
+    }
+
 }

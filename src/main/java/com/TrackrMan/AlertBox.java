@@ -77,6 +77,15 @@ public class AlertBox {
 
         Scene scene = new Scene(groupBox);
 
+        nameParcel.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.length() > 0) {
+                noButton.setDisable(true);
+            }
+            else {
+                noButton.setDisable(false);
+            }
+        });
+
         nameParcel.setOnKeyPressed(event -> {
             if ( (event.getCode()).equals(KeyCode.ENTER) ) {
                 yesButton.fire();

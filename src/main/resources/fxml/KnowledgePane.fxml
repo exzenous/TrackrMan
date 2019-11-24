@@ -5,68 +5,92 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<Accordion xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.TrackrMan.KnowledgeViewController" fx:id="accord">
-   <panes>
-      <TitledPane expanded="true" animated="true" text="Types of Parcel" fx:id="firstPane">
-         <BorderPane>
-            <top>
-               <AnchorPane BorderPane.alignment="CENTER">
-                  <styleClass>
-                     <String fx:value="kno1"/>
-                     <String fx:value="header"/>
-                  </styleClass>
-                  <HBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                        AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0">
-                     <ImageView fitWidth="600.0" pickOnBounds="true" preserveRatio="true"
-                                AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                                AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                        <Image url="@../img/knowledge/kn_1.png"/>
-                     </ImageView>
-                  </HBox>
-               </AnchorPane>
-            </top>
-            <center>
-               <AnchorPane prefHeight="200.0" prefWidth="200.0" stylesheets="@../img/knowledge/kn_1.png"
-                           BorderPane.alignment="CENTER">
-                  <styleClass>
-                     <String fx:value="kno1"/>
-                     <String fx:value="body"/>
-                  </styleClass>
-                  <HBox alignment="CENTER" prefHeight="201.0" prefWidth="602.0" AnchorPane.bottomAnchor="0.0"
-                        AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <ImageView fitWidth="1000.0" pickOnBounds="true" preserveRatio="true">
-                        <Image url="@../img/knowledge/kn_2.png"/>
-                     </ImageView>
-                  </HBox>
-               </AnchorPane>
-            </center>
-         </BorderPane>
-      </TitledPane>
-      <TitledPane expanded="false" animated="true" text="FAQ">
-         <BorderPane prefHeight="200.0" prefWidth="200.0">
-            <top>
-               <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                  <HBox alignment="CENTER" prefHeight="200.0" prefWidth="1001.0" AnchorPane.bottomAnchor="0.0"
-                        AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <ImageView fitWidth="600.0" pickOnBounds="true" preserveRatio="true"
-                                AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                                AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                        <Image url="@../img/knowledge/kn_3.png"/>
-                     </ImageView>
-                  </HBox>
-               </AnchorPane>
-            </top>
-            <center>
-               <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                  <HBox alignment="CENTER" prefHeight="202.0" prefWidth="1001.0" AnchorPane.bottomAnchor="0.0"
-                        AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <ImageView fitWidth="1000.0" pickOnBounds="true" preserveRatio="true">
-                        <Image url="@../img/knowledge/kn_4.png"/>
-                     </ImageView>
-                  </HBox>
-               </AnchorPane>
-            </center>
-         </BorderPane>
-      </TitledPane>
-   </panes>
-</Accordion>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.TrackrMan.KnowledgeViewController">
+   <children>
+      <Accordion fx:id="accord" prefHeight="54.0" prefWidth="1023.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <panes>
+            <TitledPane fx:id="firstPane" animated="true" expanded="true" text="Types of Parcel">
+               <content>
+                  <BorderPane>
+                     <top>
+                        <AnchorPane BorderPane.alignment="CENTER">
+                           <styleClass>
+                              <String fx:value="kno1" />
+                              <String fx:value="header" />
+                           </styleClass>
+                           <children>
+                              <HBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <ImageView fitWidth="600.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <image>
+                                          <Image url="@../img/knowledge/kn_1.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
+                     </top>
+                     <center>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" stylesheets="@../img/knowledge/kn_1.png" BorderPane.alignment="CENTER">
+                           <styleClass>
+                              <String fx:value="kno1" />
+                              <String fx:value="body" />
+                           </styleClass>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="201.0" prefWidth="602.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <ImageView fitWidth="1000.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../img/knowledge/kn_2.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
+                     </center>
+                  </BorderPane>
+               </content>
+            </TitledPane>
+            <TitledPane animated="true" expanded="false" text="FAQ">
+               <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <top>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="200.0" prefWidth="1001.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <ImageView fitWidth="600.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <image>
+                                          <Image url="@../img/knowledge/kn_3.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
+                     </top>
+                     <center>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="202.0" prefWidth="1001.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <ImageView fitWidth="1000.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../img/knowledge/kn_4.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
+                     </center>
+                  </BorderPane>
+               </content>
+            </TitledPane>
+         </panes>
+      </Accordion>
+   </children>
+</AnchorPane>
