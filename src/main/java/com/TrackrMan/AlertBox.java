@@ -27,7 +27,6 @@ public class AlertBox {
         window.setTitle(title);
         window.setResizable(false);
         window.setOnCloseRequest(event -> {
-            event.consume();
         });
 
         Label msg = new Label(message);
@@ -99,7 +98,7 @@ public class AlertBox {
         if(!answer){
             return "Untitled Parcel";
         }
-        else{
+        else {
             return nameParcel.getText();
         }
 

@@ -20,7 +20,15 @@
      -fx-background-repeat: no-repeat;
 }
 
-.deposit {
-    -fx-background-image: url("../img/status/103.png");
-    -fx-background-color: #b0ff57;
+.accepted {
+    -fx-background-image: url("../img/status/status1.png");
+}
+.transport {
+    -fx-background-image: url("../img/status/status2.png");
+}
+.delivery {
+    -fx-background-image: url("../img/status/status1.png");
+}
+.success {
+    -fx-background-image: url("../img/status/status4.png");
 }

@@ -12,7 +12,6 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 
 import java.net.URL;
@@ -67,7 +66,6 @@ public class TrackViewController implements Initializable {
         String newTrackCode = inputCodeField.getText();
 
         if ( (newTrackCode.trim()).equals("") ) {
-            System.out.println("Empty Box");
             AlertBox.ErrorMsgNoReply("Error!","Please enter Tracking Code.");
         }
         else{
@@ -95,14 +93,13 @@ public class TrackViewController implements Initializable {
 
             trackingList.getNumOfTrackingList().set(trackingList.getTrackingList().size());
             inputCodeField.setText("");
+            AlertBox.answer = null;
         }
     }
 
     //Initialization when view is added
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-
 
         //Set Vendor Option to Choice 1
         vendorOption.setItems(vendorList);
@@ -166,11 +163,4 @@ public class TrackViewController implements Initializable {
         });
     }
 
-    public TrackCollection getTrackingList() {
-        return trackingList;
-    }
-
-    public void setTrackingList(TrackCollection trackingList) {
-        this.trackingList = trackingList;
-    }
 }

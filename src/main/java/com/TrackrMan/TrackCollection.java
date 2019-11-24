@@ -7,14 +7,8 @@ import javafx.collections.ObservableList;
 
 public class TrackCollection {
 
-    /*
-    *
-    *
-    *
-    * */
-
     //List for ListView to Show
-    private ObservableList<Parcel> trackingList;
+    static ObservableList<Parcel> trackingList;
 
     // Number of Items
     private IntegerProperty numOfTrackingList = new SimpleIntegerProperty(0);
@@ -37,11 +31,11 @@ public class TrackCollection {
         return numOfTrackingList;
     }
 
-    public void saveList(ObservableList<Parcel> list){
+    public static void saveList(){
 
     }
 
-    public void loadList(){
+    public static void loadList(){
 
     }
 

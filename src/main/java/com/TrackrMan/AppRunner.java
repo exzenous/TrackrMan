@@ -18,8 +18,7 @@ public class AppRunner extends Application {
 
     BorderPane wholeWindowView, sideButtonsView;
 
-    TrackCollection trackCollection;
-
+    static Boolean firstTimeLaunch = true;
     // Attribute Block END
 
     // JavaFX moved all main Processes to start Method
@@ -39,8 +38,6 @@ public class AppRunner extends Application {
         AnchorPane trackView = FXMLLoader.load(getClass().getResource("/fxml/TrackPane.fxml"));
         AnchorPane knowledgeView = FXMLLoader.load(getClass().getResource("/fxml/KnowledgePane.fxml"));
         AnchorPane aboutView = FXMLLoader.load(getClass().getResource("/fxml/AboutPane.fxml"));
-
-        // Load new List Object into TrackView
 
         // Init Each Part of Components
         wholeWindowView = new BorderPane();
@@ -102,6 +99,11 @@ public class AppRunner extends Application {
         wholeWindowView.setCenter(trackView);
         mainWindow.setScene(loadedScreen);
         mainWindow.show();
+
+        // Save Tracking List on Close
+        mainWindow.setOnCloseRequest(event -> {
+            System.out.println(TrackCollection.trackingList);
+        });
 
     }
 }
