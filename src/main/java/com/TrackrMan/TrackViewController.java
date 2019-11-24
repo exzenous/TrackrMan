@@ -19,9 +19,9 @@ import javafx.scene.layout.HBox;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class TrackPane implements Initializable {
+public class TrackViewController implements Initializable {
 
-    public TrackPane() {
+    public TrackViewController() {
         //Pull off List of Data Every Time on Launch
 
         //Create Array (Obserable)
@@ -118,7 +118,10 @@ public class TrackPane implements Initializable {
 
         //Set ListView to Show Items from List, Set Appearance of List Cell
         trackingListView.setItems(trackingNowList);
-        trackingListView.setCellFactory(param -> new ParcelCell());
+        trackingListView.setCellFactory(param -> {
+            ParcelListCell cell = new ParcelListCell();
+            return cell;
+        });
         trackingListView.setEditable(true);
 
         //Reload Number of List

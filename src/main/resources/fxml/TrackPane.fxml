@@ -19,7 +19,7 @@
 <?import javafx.scene.image.Image?>
 <AnchorPane minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0"
             xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.TrackrMan.TrackPane" stylesheets="@../css/TrackStyle.css">
+            fx:controller="com.TrackrMan.TrackViewController" stylesheets="@../css/TrackStyle.css">
    <GridPane layoutX="118.0" layoutY="97.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0"
              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <columnConstraints>

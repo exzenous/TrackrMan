@@ -1,4 +1,4 @@
-.parcel , .status {
+.parcel {
      -fx-background-position: center;
      -fx-background-size: 100%;
      -fx-background-repeat: no-repeat;
@@ -12,6 +12,12 @@
 }
 .dhl {
     -fx-background-image: url("../img/DHL-logo.jpg");
+}
+
+.status-image {
+     -fx-background-position: center;
+     -fx-background-size: 100%;
+     -fx-background-repeat: no-repeat;
 }
 
 .deposit {

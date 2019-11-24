@@ -10,7 +10,7 @@ import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 
 
-public class ParcelCell extends JFXListCell<Parcel> {
+public class ParcelListCell extends JFXListCell<Parcel> {
 
     @FXML
     private AnchorPane statusImage;
@@ -27,7 +27,7 @@ public class ParcelCell extends JFXListCell<Parcel> {
     @FXML
     private Label parcelCode;
 
-    private FXMLLoader cellLoader = new FXMLLoader(getClass().getResource("/fxml/ParcelCell.fxml"));
+    private FXMLLoader cellLoader = new FXMLLoader(getClass().getResource("/fxml/ParcelListCell.fxml"));
 
     @Override
     protected void updateItem(Parcel item, boolean empty){
@@ -54,7 +54,6 @@ public class ParcelCell extends JFXListCell<Parcel> {
         this.vendorImage.getStyleClass().addAll("parcel",p.getVendorTag());
         this.parcelName.setText(p.getName());
         this.parcelCode.setText(p.getTrackCode());
-        System.out.println(p.getStatus());
         this.statusImage.getStyleClass().addAll("status-image",p.getStatus());
     }
 

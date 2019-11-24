@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXButton;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Accordion;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -28,7 +29,12 @@ public class AppRunner extends Application {
         mainWindow.setMinHeight(700);
 
         AnchorPane trackView = FXMLLoader.load(getClass().getResource("/fxml/TrackPane.fxml"));
+        Accordion knowledgePane = FXMLLoader.load(getClass().getResource("/fxml/KnowledgePane.fxml"));
         AnchorPane aboutView = FXMLLoader.load(getClass().getResource("/fxml/AboutPane.fxml"));
+
+        BorderPane knowledgeView = new BorderPane();
+
+        knowledgeView.setCenter(knowledgePane);
 
         wholeWindowView = new BorderPane();
 
@@ -50,7 +56,7 @@ public class AppRunner extends Application {
         historyButton = new JFXButton("Knowledge",imageHistoryView);
         historyButton.setContentDisplay(ContentDisplay.TOP);
         historyButton.setOnAction(e -> {
-            System.out.println("AppRunner.start");
+            wholeWindowView.setCenter(knowledgeView);
         });
 
         Image imageAbout = new Image(getClass().getResourceAsStream("/img/about.png"));
