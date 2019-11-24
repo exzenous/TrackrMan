@@ -8,8 +8,8 @@ import java.util.ResourceBundle;
 
 public class AboutViewController implements Initializable {
 
-    public String version = "alpha0.5";
-    public String buildNumber = "0063";
+    public String version = "beta0.1";
+    public String buildNumber = "0083";
     public Label versionLabel;
 
     @Override

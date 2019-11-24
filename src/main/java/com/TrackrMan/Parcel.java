@@ -11,6 +11,7 @@ public abstract class Parcel implements Trackable{
     private String trackCode;
     private String status;
     private String vendorTag;
+    private String jsonString;
 
     public Parcel(String name, String trackCode) {
         this.name = name;
@@ -41,6 +42,13 @@ public abstract class Parcel implements Trackable{
     public String getVendorTag() { return vendorTag; }
 
     public void setVendorTag(String vendorTag) { this.vendorTag = vendorTag; }
+
+    public String getJsonString() {
+        return jsonString;
+    }
+    public void setJsonString(String jsonString) {
+        this.jsonString = jsonString;
+    }
 
     @Override
     public void turnOffSSLCheck() throws NoSuchAlgorithmException, KeyManagementException {

@@ -23,7 +23,7 @@ public class ThaiPostParcel extends Parcel {
 
     public void trackThis(){
 
-        String tokenFirst = null ,status = null;
+        String tokenFirst = null ,json = null, status = null;
 
         try {
             super.turnOffSSLCheck();
@@ -33,14 +33,35 @@ public class ThaiPostParcel extends Parcel {
 
         try {
             tokenFirst = requestToken();
-            status = requestStatus(tokenFirst,getTrackCode());
+            json = requestStatus(tokenFirst,getTrackCode());
+            this.setJsonString(json);
+            status = decodeJSON(json, this.getTrackCode());
         } catch (Exception ignored) { }
 
         System.out.println(status);
 
         assert status != null;
-        if (status.equals("501")) {
-            this.setStatus("success");
+        char firstNumCode = (status.charAt(0));
+        char lastNumCode = status.charAt(2);
+        switch (firstNumCode){
+            case '1':
+                this.setStatus("accepted");
+                break;
+            case '2' :
+                this.setStatus("transport");
+                break;
+            case '3' :
+                this.setStatus("delivery");
+                break;
+            case '4' :
+                this.setStatus("unsuccess");
+                break;
+            case '5' :
+                this.setStatus("success");
+                break;
+            default:
+                this.setStatus("fail");
+                break;
         }
 
     }
@@ -116,16 +137,21 @@ public class ThaiPostParcel extends Parcel {
         BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 
         String charIn;
-        StringBuffer reposond = new StringBuffer();
+        StringBuffer response = new StringBuffer();
 
         while ((charIn = in.readLine()) != null) {
-            reposond.append(charIn);
+            response.append(charIn);
         }
         in.close();
         connection.disconnect();
 
+        return response.toString();
+
+    }
+
+    public String decodeJSON(String response, String code){
         // Convert to JSONObject to Get Status
-        JSONObject realJSON = new JSONObject(reposond.toString());
+        JSONObject realJSON = new JSONObject(response);
         JSONObject responseJSON = realJSON.getJSONObject("response");
         JSONObject itemsJSON = responseJSON.getJSONObject("items");
 
@@ -138,8 +164,6 @@ public class ThaiPostParcel extends Parcel {
         }else{
             return null;
         }
-
     }
-
 
 }

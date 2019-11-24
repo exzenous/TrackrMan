@@ -79,8 +79,14 @@ public class AppRunner extends Application {
         ImageView imageExitView = new ImageView(imageExit);
         exitButton = new JFXButton("Exit",imageExitView);
         exitButton.setContentDisplay(ContentDisplay.TOP);
-        exitButton.setOnAction(e -> {
-            mainWindow.close();
+        exitButton.setOnAction(event -> {
+            event.consume();
+            boolean confirm;
+            confirm = AlertBox.AskForConfirm("Confirmation","Are you sure you want to exit?");
+            if (confirm) {
+                TrackCollection.saveList();
+                mainWindow.close();
+            }
         });
         // Init Sidebar Button End Block
 
@@ -102,7 +108,13 @@ public class AppRunner extends Application {
 
         // Save Tracking List on Close
         mainWindow.setOnCloseRequest(event -> {
-            System.out.println(TrackCollection.trackingList);
+            event.consume();
+            boolean confirm;
+            confirm = AlertBox.AskForConfirm("Confirmation","Are you sure you want to exit?");
+            if (confirm) {
+                TrackCollection.saveList();
+                mainWindow.close();
+            }
         });
 
     }
