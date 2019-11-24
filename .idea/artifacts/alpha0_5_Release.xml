@@ -1,9 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="alpha0.5_Release">
-    <output-path>$PROJECT_DIR$/out/artifacts/alpha0_5_Release</output-path>
-    <root id="archive" name="TrackrMan.jar">
-      <element id="module-output" name="TrackrMan" />
-      <element id="extracted-dir" path="$USER_HOME$/JavaFXLibrary/jfoenix-8.0.8.jar" path-in-jar="/" />
-    </root>
-  </artifact>
-</component>
