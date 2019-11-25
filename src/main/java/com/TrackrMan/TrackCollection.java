@@ -15,7 +15,7 @@ public class TrackCollection implements Serializable{
     private transient ObservableList<Parcel> trackingList;
 
     // Number of Items
-    private transient IntegerProperty  numOfTrackingList = new SimpleIntegerProperty(0);
+    private transient IntegerProperty numOfTrackingList = new SimpleIntegerProperty(0);
 
     public TrackCollection() {
         trackingList = FXCollections.observableArrayList();

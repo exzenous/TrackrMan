@@ -7,8 +7,9 @@ public class KerryParcel extends Parcel {
         setVendorTag("kerry");
     }
 
-    public void trackThis(){
+    public Boolean trackThis(){
         setStatus("deposit");
+        return null;
     }
 
 }

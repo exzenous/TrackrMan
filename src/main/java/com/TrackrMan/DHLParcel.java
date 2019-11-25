@@ -7,8 +7,9 @@ public class DHLParcel extends Parcel {
         setVendorTag("dhl");
     }
 
-    public void trackThis(){
+    public Boolean trackThis(){
         setStatus("deposit");
+        return null;
     }
 
 }

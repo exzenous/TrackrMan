@@ -78,40 +78,29 @@ public class TrackViewController implements Initializable {
             AlertBox.ErrorMsgNoReply("Error!","Please enter Tracking Code.");
         }
         else{
-
             String newTrackName = AlertBox.AskForNaming("Before Continue", "Do you want to add a name for your parcel?");
-
             if (newTrackName != null) {
-                Parcel newItem;
+                Parcel newItem = null;
                 switch (vendorOption.getSelectionModel().getSelectedIndex() ){
                     case 0 :
                         newItem = new ThaiPostParcel(newTrackName,newTrackCode);
-                        newItem.trackThis();
-                        trackingList.getTrackingList().add(newItem);
                         break;
                     case 1 :
                         newItem = new KerryParcel(newTrackName,newTrackCode);
-                        newItem.trackThis();
-                        trackingList.getTrackingList().add(newItem);
                         break;
                     case 2 :
                         newItem = new DHLParcel(newTrackName,newTrackCode);
-                        newItem.trackThis();
-                        trackingList.getTrackingList().add(newItem);
                         break;
                     default:
                         break;
                 }
+                assert newItem != null;
+                if (newItem.trackThis()) { trackingList.getTrackingList().add(newItem); }
             }
-
             trackingList.getNumOfTrackingList().set(trackingList.getTrackingList().size());
             inputCodeField.setText("");
-//            AlertBox.LoadingWindow();
-            try {
-                trackingList.saveList();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            try { trackingList.saveList(); }
+            catch (IOException e) { e.printStackTrace(); }
             AlertBox.answer = null;
         }
     }
@@ -178,6 +167,8 @@ public class TrackViewController implements Initializable {
                 trackingList.getTrackingList().remove(trackingListView.getSelectionModel().getSelectedIndex());
                 trackingListView.setItems(trackingList.getTrackingList());
                 trackingList.getNumOfTrackingList().set(trackingList.getTrackingList().size());
+                try { trackingList.saveList(); }
+                catch (IOException e) { e.printStackTrace(); }
             }
         });
 

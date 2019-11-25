@@ -199,10 +199,9 @@ public class AlertBox {
 
     }
 
-    public static void LoadingWindow() {
+    public static void LoadingWindow(Parcel p) {
         Stage window = new Stage();
         window.setResizable(false);
-//        window.setOnCloseRequest(Event::consume);
 
         JFXSpinner spinnerLoad = new JFXSpinner();
         spinnerLoad.setRadius(20.0);

@@ -1,5 +1,8 @@
 package com.TrackrMan;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+
 import javax.net.ssl.*;
 import java.io.Serializable;
 import java.security.KeyManagementException;
@@ -15,6 +18,7 @@ public abstract class Parcel implements Trackable, Serializable {
     private String realStatus;
     private String vendorTag;
     private String jsonString;
+
 
     public Parcel(String name, String trackCode) {
         setName(name);

@@ -18,7 +18,7 @@ public class ThaiPostParcel extends Parcel {
         setVendorTag("thailandpost");
     }
 
-    public void trackThis(){
+    public Boolean trackThis(){
         String tokenFirst = null , status = null, json = null;
 
         // Turn off SSL Validation Check (stupid!)
@@ -40,35 +40,66 @@ public class ThaiPostParcel extends Parcel {
 
         System.out.println("This Parcel Status: " + status);
 
-        assert status != null;
-        char firstNumCode = (status.charAt(0));
-        char lastNumCode = status.charAt(2);
-        switch (firstNumCode){
-            case '1':
-                this.setStatus("accepted");
-                break;
-            case '2' :
-                this.setStatus("transport");
-                break;
-            case '3' :
-                this.setStatus("delivery");
-                break;
-            case '4' :
-                this.setStatus("unsuccess");
-                break;
-            case '5' :
-                this.setStatus("success");
-                break;
-            default:
-                this.setStatus("fail");
-                break;
+        if (status != null){
+            this.setRealStatus(status);
+            char firstNumCode = (status.charAt(0));
+            char lastNumCode = status.charAt(2);
+            switch (firstNumCode){
+                case '1':
+                    this.setStatus("accepted");
+                    break;
+                case '2' :
+                    this.setStatus("transport");
+                    break;
+                case '3' :
+                    this.setStatus("delivery");
+                    break;
+                case '4' :
+                    this.setStatus("unsuccess");
+                    break;
+                case '5' :
+                    this.setStatus("success");
+                    break;
+                default:
+                    this.setStatus("fail");
+                    break;
+            }
+            return true;
         }
-
+        else {
+            return false;
+        }
     }
 
     @Override
     public void setRealStatus(String realStatus) {
-
+        String finalCode;
+        switch (realStatus){
+            case "101":
+                super.setRealStatus("Being\nPosted");
+                break;
+            case "102": case "103" :
+                super.setRealStatus("Posted");
+                break;
+            case "201":
+                super.setRealStatus("In\nTransit");
+                break;
+            case "203":
+                super.setRealStatus("Being\nReturned");
+                break;
+            case "301": case "302":
+                super.setRealStatus("Being\nDelivered");
+                break;
+            case "401":
+                super.setRealStatus("Failed\nDelivery");
+                break;
+            case "501":
+                super.setRealStatus("Final\nDelivery");
+                break;
+            default:
+                super.setRealStatus("Unknown");
+                break;
+        }
     }
 
     public String requestToken() throws Exception {
