@@ -96,6 +96,7 @@ public class TrackViewController implements Initializable {
                 }
                 assert newItem != null;
                 if (newItem.trackThis()) { trackingList.getTrackingList().add(newItem); }
+                else { AlertBox.ErrorMsgNoReply("Error!","Please check your code and try again."); }
             }
             trackingList.getNumOfTrackingList().set(trackingList.getTrackingList().size());
             inputCodeField.setText("");

@@ -1,6 +1,6 @@
 package com.TrackrMan;
 
-public class ViewDetailViewController {
+public class ViewDetailViewController implements  {
 
 
 
