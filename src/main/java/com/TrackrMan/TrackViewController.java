@@ -160,10 +160,14 @@ public class TrackViewController implements Initializable {
                 case 1:
                     inputCodeField.setStyle("-jfx-focus-color: #e96514;");
                     addToTrack.setStyle("-fx-background-color:" + vendorColor[vendorList.indexOf(newValue)] + ";" );
+                    AlertBox.ErrorMsgNoReply("Sorry","Sorry for inconvenient,\n Kerry Express Tracking hasn't yet available.");
+                    vendorOption.setValue(vendorList.get(0));
                     break;
                 case 2:
                     inputCodeField.setStyle("-jfx-focus-color: #c17900;");
                     addToTrack.setStyle("-fx-background-color:" + vendorColor[vendorList.indexOf(newValue)] + ";" + "-fx-text-fill: black;");
+                    AlertBox.ErrorMsgNoReply("Sorry","Sorry for inconvenient,\n DHL Tracking hasn't yet available.");
+                    vendorOption.setValue(vendorList.get(0));
                     break;
             }
 
@@ -177,6 +181,9 @@ public class TrackViewController implements Initializable {
             if ( trackingListView.getSelectionModel().getSelectedIndex() >= 0) {
                 trackingList.getTrackingList().get(trackingListView.getSelectionModel().getSelectedIndex()).trackThis();
             }
+            else {
+                trackingListView.getSelectionModel().clearSelection();
+            }
         });
 
         Image moreDetailImage = new Image(getClass().getResourceAsStream("/img/icons8-more_filled.png"),20,20,true,true);
@@ -185,6 +192,9 @@ public class TrackViewController implements Initializable {
         selectedMoreDetailFromList.setOnAction(event -> {
             if ( trackingListView.getSelectionModel().getSelectedIndex() >= 0) {
                 this.createMoreDetailWindow( (trackingList.getTrackingList().get(trackingListView.getSelectionModel().getSelectedIndex())) );
+            }
+            else {
+                trackingListView.getSelectionModel().clearSelection();
             }
         });
 
@@ -263,6 +273,7 @@ public class TrackViewController implements Initializable {
         tableView.setItems(dataTable);
         tableView.getColumns().addAll(dateCol,statusCol,locationCol);
         tableView.setEditable(false);
+        tableView.getSelectionModel().select(dataTable.size() - 1);
 
         Button closeButton = new Button("Close");
         closeButton.setOnAction(event -> {window.close();});

@@ -13,6 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -167,6 +168,7 @@ public class AlertBox {
         HBox imageBox = new HBox(new ImageView(new Image("/img/alert-warn.png")));
         imageBox.setAlignment(Pos.CENTER);
         Label msg = new Label(message);
+        msg.setTextAlignment(TextAlignment.CENTER);
         JFXButton okButton;
 
         okButton = new JFXButton("OK");
