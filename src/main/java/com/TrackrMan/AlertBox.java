@@ -1,6 +1,7 @@
 package com.TrackrMan;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXSpinner;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.Event;
 import javafx.geometry.Insets;
@@ -11,6 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
+import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -95,13 +97,15 @@ public class AlertBox {
 
         window.showAndWait();
 
-        if(!answer){
-            return "Untitled Parcel";
+        if (answer != null) {
+            if(!answer){
+                return "Untitled Parcel";
+            }
+            else {
+                return nameParcel.getText();
+            }
         }
-        else {
-            return nameParcel.getText();
-        }
-
+        return null;
     }
 
     public static Boolean AskForConfirm(String title, String message){
@@ -193,6 +197,28 @@ public class AlertBox {
 
         Toolkit.getDefaultToolkit().beep();
 
+    }
+
+    public static void LoadingWindow() {
+        Stage window = new Stage();
+        window.setResizable(false);
+//        window.setOnCloseRequest(Event::consume);
+
+        JFXSpinner spinnerLoad = new JFXSpinner();
+        spinnerLoad.setRadius(20.0);
+
+        Label msg1 = new Label("Please wait while we're trying hard on");
+        msg1.setFont(new Font(20));
+        Label msg2 = new Label("Connecting...");
+        VBox box = new VBox(msg1,spinnerLoad,msg2);
+        box.setSpacing(20);
+        box.setAlignment(Pos.CENTER);
+        box.setPadding(new Insets(20));
+
+        Scene scene = new Scene(box);
+
+        window.setScene(scene);
+        window.show();
     }
 
 }

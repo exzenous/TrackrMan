@@ -8,17 +8,20 @@ import java.security.cert.X509Certificate;
 
 public abstract class Parcel implements Trackable, Serializable {
 
+    // Attibutes
     private String name;
     private String trackCode;
     private String status;
+    private String realStatus;
     private String vendorTag;
     private String jsonString;
 
     public Parcel(String name, String trackCode) {
-        this.name = name;
-        this.trackCode = trackCode;
+        setName(name);
+        setTrackCode(trackCode);
     }
 
+    // Getters and Setters
     public String getName() {
         return name;
     }
@@ -40,8 +43,14 @@ public abstract class Parcel implements Trackable, Serializable {
         this.status = status;
     }
 
-    public String getVendorTag() { return vendorTag; }
+    public String getRealStatus() {
+        return realStatus;
+    }
+    public void setRealStatus(String realStatus) {
+        this.realStatus = realStatus;
+    }
 
+    public String getVendorTag() { return vendorTag; }
     public void setVendorTag(String vendorTag) { this.vendorTag = vendorTag; }
 
     public String getJsonString() {

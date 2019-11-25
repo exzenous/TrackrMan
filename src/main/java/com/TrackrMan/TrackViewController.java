@@ -40,6 +40,7 @@ public class TrackViewController implements Initializable {
                 emptyMessage.setVisible(true);
             }
         });
+        AppRunner.trackCollection = trackingList;
     }
 
     // Attribute Block START
@@ -77,30 +78,40 @@ public class TrackViewController implements Initializable {
             AlertBox.ErrorMsgNoReply("Error!","Please enter Tracking Code.");
         }
         else{
-            Parcel newItem;
+
             String newTrackName = AlertBox.AskForNaming("Before Continue", "Do you want to add a name for your parcel?");
-            switch (vendorOption.getSelectionModel().getSelectedIndex() ){
-                case 0 :
-                    newItem = new ThaiPostParcel(newTrackName,newTrackCode);
-                    newItem.trackThis();
-                    trackingList.getTrackingList().add(newItem);
-                    break;
-                case 1 :
-                    newItem = new KerryParcel(newTrackName,newTrackCode);
-                    newItem.trackThis();
-                    trackingList.getTrackingList().add(newItem);
-                    break;
-                case 2 :
-                    newItem = new DHLParcel(newTrackName,newTrackCode);
-                    newItem.trackThis();
-                    trackingList.getTrackingList().add(newItem);
-                    break;
-                default:
-                    break;
+
+            if (newTrackName != null) {
+                Parcel newItem;
+                switch (vendorOption.getSelectionModel().getSelectedIndex() ){
+                    case 0 :
+                        newItem = new ThaiPostParcel(newTrackName,newTrackCode);
+                        newItem.trackThis();
+                        trackingList.getTrackingList().add(newItem);
+                        break;
+                    case 1 :
+                        newItem = new KerryParcel(newTrackName,newTrackCode);
+                        newItem.trackThis();
+                        trackingList.getTrackingList().add(newItem);
+                        break;
+                    case 2 :
+                        newItem = new DHLParcel(newTrackName,newTrackCode);
+                        newItem.trackThis();
+                        trackingList.getTrackingList().add(newItem);
+                        break;
+                    default:
+                        break;
+                }
             }
 
             trackingList.getNumOfTrackingList().set(trackingList.getTrackingList().size());
             inputCodeField.setText("");
+//            AlertBox.LoadingWindow();
+            try {
+                trackingList.saveList();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             AlertBox.answer = null;
         }
     }
@@ -109,23 +120,22 @@ public class TrackViewController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        AppRunner.trackCollection = trackingList;
-
-        //Set Vendor Option to Choice 1
+        // Set Vendor Option to Choice 1
         vendorOption.setItems(vendorList);
         vendorOption.setValue(vendorList.get(0));
 
-        //Set Add Button Style and Action
+        // Set Add Button Style and Action
         addToTrack.setStyle("-fx-background-color:" + vendorColor[0] + ";" );
         addToTrack.setOnAction(event -> { clickAdd(); });
 
-        //Set ListView to Show Items from List, Set Appearance of List Cell
+        // Set ListView to Show Items from List, Set Appearance of List Cell
         trackingListView.setItems(trackingList.getTrackingList());
         trackingListView.setCellFactory(param -> new ParcelListCell());
 
-        //Reload Number of List
+        // Reload Number of List
         trackingList.getNumOfTrackingList().set(trackingList.getTrackingList().size());
 
+        // When Double Click on List
         trackingListView.setOnMouseClicked(event -> {
             if(event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2 ) {
                 if ( trackingListView.getSelectionModel().getSelectedIndex() >= 0) {
@@ -137,7 +147,7 @@ public class TrackViewController implements Initializable {
             }
         });
 
-        //When click to change Vendor Event Handler Block
+        // When click to change Vendor Event Handler Block
         vendorOption.getSelectionModel().selectedItemProperty().addListener( (observable, oldValue, newValue) -> {
 
             switch (vendorList.indexOf(newValue)){
@@ -157,7 +167,7 @@ public class TrackViewController implements Initializable {
 
         });
 
-        //Set Image within ContextMenu
+        // Set Image within ContextMenu
         Image trashImage = new Image(getClass().getResourceAsStream("/img/icons8-filled_trash.png"),20,20,true,true);
         ImageView trashImageView = new ImageView(trashImage);
         selectedRemoveFromList.setGraphic(trashImageView);
@@ -171,12 +181,12 @@ public class TrackViewController implements Initializable {
             }
         });
 
-        //Auto Capitalize in TextField
+        // Auto Capitalize in TextField
         inputCodeField.textProperty().addListener((observable, oldValue, newValue) -> {
             inputCodeField.setText(newValue.toUpperCase());
         });
 
-        //When pressed Enter on Textfield
+        // When pressed Enter on Textfield
         inputCodeField.setOnKeyPressed(event -> {
             if ( (event.getCode()).equals(KeyCode.ENTER) ) {
                 clickAdd();

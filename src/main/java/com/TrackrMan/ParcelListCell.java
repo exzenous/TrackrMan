@@ -12,18 +12,15 @@ import java.io.IOException;
 
 public class ParcelListCell extends JFXListCell<Parcel> {
 
+    // Normal/FXML Attributes
     @FXML
     private AnchorPane statusImage;
-
     @FXML
     private AnchorPane vendorImage;
-
     @FXML
-    private Label etaText;
-
+    private Label realStatus;
     @FXML
     private Label parcelName;
-
     @FXML
     private Label parcelCode;
 
@@ -54,6 +51,7 @@ public class ParcelListCell extends JFXListCell<Parcel> {
         this.vendorImage.getStyleClass().addAll("parcel",p.getVendorTag());
         this.parcelName.setText(p.getName());
         this.parcelCode.setText(p.getTrackCode());
+        this.realStatus.setText(p.getRealStatus());
         this.statusImage.getStyleClass().addAll("status-image",p.getStatus());
     }
 

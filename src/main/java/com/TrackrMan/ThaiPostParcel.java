@@ -19,9 +19,9 @@ public class ThaiPostParcel extends Parcel {
     }
 
     public void trackThis(){
+        String tokenFirst = null , status = null, json = null;
 
-        String tokenFirst = null ,json = null, status = null;
-
+        // Turn off SSL Validation Check (stupid!)
         try {
             super.turnOffSSLCheck();
         } catch (NoSuchAlgorithmException | KeyManagementException e) {
@@ -29,13 +29,16 @@ public class ThaiPostParcel extends Parcel {
         }
 
         try {
+            // Request 1st Layer API; Get Token First!
             tokenFirst = requestToken();
-            json = requestStatus(tokenFirst,getTrackCode());
-            this.setJsonString(json);
-            status = decodeJSON(json, this.getTrackCode());
+            // Request 2st Layer API; Get Item Status
+            json = requestStatus( tokenFirst, this.getTrackCode() );
+            this.setJsonString( json );
+            // Request 1st Layer API; Get Token First!
+            status = decodeJSON( json, this.getTrackCode() );
         } catch (Exception ignored) { }
 
-        System.out.println(status);
+        System.out.println("This Parcel Status: " + status);
 
         assert status != null;
         char firstNumCode = (status.charAt(0));
@@ -63,6 +66,11 @@ public class ThaiPostParcel extends Parcel {
 
     }
 
+    @Override
+    public void setRealStatus(String realStatus) {
+
+    }
+
     public String requestToken() throws Exception {
 
         // Init Link
@@ -79,7 +87,7 @@ public class ThaiPostParcel extends Parcel {
         connection.setConnectTimeout(5000);
         connection.setReadTimeout(5000);
 
-        System.out.println(connection.getResponseCode());
+        System.out.println("Request Token Connection Status Code: " + connection.getResponseCode());
 
         // Fetch Data as String One Character per Time
         BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
@@ -128,7 +136,7 @@ public class ThaiPostParcel extends Parcel {
         os.flush();
         os.close();
 
-        System.out.println(connection.getResponseCode());
+        System.out.println("Get Item Connection Status Code: " + connection.getResponseCode());
 
         // Fetch Data as String One Character per Time
         BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
@@ -157,6 +165,7 @@ public class ThaiPostParcel extends Parcel {
         int statusNum = itemStatusArray.length();
         if (statusNum > 0) {
             JSONObject lastStatus = (JSONObject) itemStatusArray.get(statusNum - 1);
+            setRealStatus(lastStatus.getString("status_description"));
             return lastStatus.getString("status");
         }else{
             return null;

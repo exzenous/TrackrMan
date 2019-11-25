@@ -89,7 +89,7 @@ public class AppRunner extends Application {
             confirm = AlertBox.AskForConfirm("Confirmation","Are you sure you want to exit?");
             if (confirm) {
                 try {
-                    trackCollection.saveList(trackCollection);
+                    trackCollection.saveList();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -121,8 +121,7 @@ public class AppRunner extends Application {
             confirm = AlertBox.AskForConfirm("Confirmation","Are you sure you want to exit?");
             if (confirm) {
                 try {
-                    System.out.println(trackCollection);
-                    trackCollection.saveList(trackCollection);
+                    trackCollection.saveList();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

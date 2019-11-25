@@ -37,7 +37,7 @@
          <right>
                 <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                     <children>
-                        <Label fx:id="etaText" text="2&#10;days" textAlignment="CENTER">
+                        <Label fx:id="realStatus" text="2&#10;days" textAlignment="CENTER">
                             <font>
                                 <Font size="18.0" />
                             </font>
