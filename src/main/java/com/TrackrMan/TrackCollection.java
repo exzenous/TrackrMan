@@ -55,8 +55,10 @@ public class TrackCollection implements Serializable{
         List foo = (ArrayList) fileInData.readObject();
 
         for (int i = 0 ; i < foo.size() ; i++ ) {
-            trackingList.add((Parcel) foo.get(i));
-            System.out.println("Load: " + trackingList.get(i));
+            Parcel bar = (Parcel) foo.get(i);
+            trackingList.add(bar);
+            System.out.println("Load: " + bar);
+            bar.trackThis();
         }
 
         fileInData.close();fileInBytes.close();
