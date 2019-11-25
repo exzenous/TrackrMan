@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
 <?import javafx.scene.layout.HBox?>
 
@@ -79,6 +78,8 @@
             <contextMenu>
                <ContextMenu>
                   <items>
+                     <MenuItem fx:id="selectedRetrackFromList" mnemonicParsing="false" text="Retrack"/>
+                     <MenuItem fx:id="selectedMoreDetailFromList" mnemonicParsing="false" text="More Detail"/>
                      <MenuItem fx:id="selectedRemoveFromList" mnemonicParsing="false" text="Remove"/>
                   </items>
                </ContextMenu>
