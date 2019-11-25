@@ -12,8 +12,10 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.HBox;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -21,7 +23,13 @@ public class TrackViewController implements Initializable {
 
     public TrackViewController() {
 
-        trackingList = new TrackCollection();
+        try {
+            trackingList = new TrackCollection();
+            trackingList.loadList();
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("Unsaved");
+            trackingList = new TrackCollection();
+        }
 
         //Add Listener when number of items is updated
         trackingList.getNumOfTrackingList().addListener((observable, oldValue, newValue) -> {
@@ -101,6 +109,8 @@ public class TrackViewController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        AppRunner.trackCollection = trackingList;
+
         //Set Vendor Option to Choice 1
         vendorOption.setItems(vendorList);
         vendorOption.setValue(vendorList.get(0));
@@ -115,6 +125,17 @@ public class TrackViewController implements Initializable {
 
         //Reload Number of List
         trackingList.getNumOfTrackingList().set(trackingList.getTrackingList().size());
+
+        trackingListView.setOnMouseClicked(event -> {
+            if(event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2 ) {
+                if ( trackingListView.getSelectionModel().getSelectedIndex() >= 0) {
+                    System.out.println("Double Clicked");
+                }
+                else {
+                    trackingListView.setFocusTraversable(false);
+                }
+            }
+        });
 
         //When click to change Vendor Event Handler Block
         vendorOption.getSelectionModel().selectedItemProperty().addListener( (observable, oldValue, newValue) -> {

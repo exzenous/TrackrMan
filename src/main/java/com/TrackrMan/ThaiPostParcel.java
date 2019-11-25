@@ -10,11 +10,8 @@ import java.io.OutputStream;
 import java.net.URL;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 
 public class ThaiPostParcel extends Parcel {
-
-    String realStatus;
 
     public ThaiPostParcel(String name, String trackCode) {
         super(name, trackCode);

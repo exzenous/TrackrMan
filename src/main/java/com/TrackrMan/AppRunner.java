@@ -11,12 +11,16 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class AppRunner extends Application {
 
     // Attribute Block START
     JFXButton trackButton, knowledgeButton, aboutButton, exitButton;
 
     BorderPane wholeWindowView, sideButtonsView;
+
+    static TrackCollection trackCollection;
 
     static Boolean firstTimeLaunch = true;
     // Attribute Block END
@@ -84,7 +88,11 @@ public class AppRunner extends Application {
             boolean confirm;
             confirm = AlertBox.AskForConfirm("Confirmation","Are you sure you want to exit?");
             if (confirm) {
-                TrackCollection.saveList();
+                try {
+                    trackCollection.saveList(trackCollection);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 mainWindow.close();
             }
         });
@@ -112,7 +120,12 @@ public class AppRunner extends Application {
             boolean confirm;
             confirm = AlertBox.AskForConfirm("Confirmation","Are you sure you want to exit?");
             if (confirm) {
-                TrackCollection.saveList();
+                try {
+                    System.out.println(trackCollection);
+                    trackCollection.saveList(trackCollection);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 mainWindow.close();
             }
         });

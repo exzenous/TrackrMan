@@ -1,11 +1,12 @@
 package com.TrackrMan;
 
 import javax.net.ssl.*;
+import java.io.Serializable;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.X509Certificate;
 
-public abstract class Parcel implements Trackable{
+public abstract class Parcel implements Trackable, Serializable {
 
     private String name;
     private String trackCode;

@@ -32,3 +32,6 @@
 .success {
     -fx-background-image: url("../img/status/status4.png");
 }
+.unsuccess {
+    -fx-background-image: url("../img/status/status5.png");
+}
