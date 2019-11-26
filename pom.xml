@@ -6,7 +6,7 @@
 
     <groupId>TrackrMan</groupId>
     <artifactId>TrackrMan</artifactId>
-    <version>release1.0</version>
+    <version>release1.0.1</version>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
