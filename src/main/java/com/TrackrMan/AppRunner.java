@@ -36,16 +36,6 @@ public class AppRunner extends Application {
     // Start Method to Initialize Program; Init Window
     @Override
     public void start(Stage mainWindow) throws Exception {
-        // Get the toolkit
-        MenuToolkit tk = MenuToolkit.toolkit();
-
-        // Create the default Application menu
-        Menu defaultApplicationMenu = tk.createDefaultApplicationMenu("TrackMan");
-
-        // Update the existing Application menu
-        tk.setApplicationMenu(defaultApplicationMenu);
-
-
         // Setup Window
         mainWindow.setTitle("TrackMan");
         mainWindow.setMinWidth(1200);
