@@ -201,7 +201,7 @@ public class AlertBox {
 
     }
 
-    public static void LoadingWindow(Parcel p) {
+    public static Stage LoadingWindow() {
         Stage window = new Stage();
         window.setResizable(false);
 
@@ -220,6 +220,7 @@ public class AlertBox {
 
         window.setScene(scene);
         window.show();
+        return window;
     }
 
 }
