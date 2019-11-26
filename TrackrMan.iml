@@ -13,5 +13,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Maven: com.jfoenix:jfoenix:8.0.9" level="project" />
     <orderEntry type="library" name="Maven: org.json:json:20190722" level="project" />
+    <orderEntry type="library" name="Maven: de.codecentric.centerdevice:centerdevice-nsmenufx:2.1.6" level="project" />
   </component>
 </module>

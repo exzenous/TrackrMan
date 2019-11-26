@@ -8,8 +8,7 @@ public class DHLParcel extends Parcel {
     }
 
     public Boolean trackThis(){
-        setStatus("deposit");
-        return null;
+        return false;
     }
 
 }

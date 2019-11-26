@@ -2,10 +2,13 @@ package com.TrackrMan;
 
 import com.jfoenix.controls.JFXButton;
 
+import de.codecentric.centerdevice.MenuToolkit;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.ContentDisplay;
+
+import javafx.scene.control.Menu;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -33,10 +36,21 @@ public class AppRunner extends Application {
     // Start Method to Initialize Program; Init Window
     @Override
     public void start(Stage mainWindow) throws Exception {
+        // Get the toolkit
+        MenuToolkit tk = MenuToolkit.toolkit();
+
+        // Create the default Application menu
+        Menu defaultApplicationMenu = tk.createDefaultApplicationMenu("TrackMan");
+
+        // Update the existing Application menu
+        tk.setApplicationMenu(defaultApplicationMenu);
+
+
         // Setup Window
         mainWindow.setTitle("TrackMan");
         mainWindow.setMinWidth(1200);
         mainWindow.setMinHeight(800);
+        mainWindow.getIcons().add(new Image("/img/icon.png"));
 
         // Load Views
         AnchorPane trackView = FXMLLoader.load(getClass().getResource("/fxml/TrackPane.fxml"));

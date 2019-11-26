@@ -8,7 +8,6 @@ public class KerryParcel extends Parcel {
     }
 
     public Boolean trackThis() {
-
         return false;
     }
 

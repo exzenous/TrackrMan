@@ -156,18 +156,19 @@ public class TrackViewController implements Initializable {
                 case 0:
                     inputCodeField.setStyle("-jfx-focus-color: #ed1c24;");
                     addToTrack.setStyle("-fx-background-color:" + vendorColor[vendorList.indexOf(newValue)] + ";" );
+                    addToTrack.setDisable(false);
                     break;
                 case 1:
                     inputCodeField.setStyle("-jfx-focus-color: #e96514;");
                     addToTrack.setStyle("-fx-background-color:" + vendorColor[vendorList.indexOf(newValue)] + ";" );
                     AlertBox.ErrorMsgNoReply("Sorry","Sorry for inconvenient,\n Kerry Express Tracking hasn't yet available.");
-                    vendorOption.setValue(vendorList.get(0));
+                    addToTrack.setDisable(true);
                     break;
                 case 2:
                     inputCodeField.setStyle("-jfx-focus-color: #c17900;");
                     addToTrack.setStyle("-fx-background-color:" + vendorColor[vendorList.indexOf(newValue)] + ";" + "-fx-text-fill: black;");
                     AlertBox.ErrorMsgNoReply("Sorry","Sorry for inconvenient,\n DHL Tracking hasn't yet available.");
-                    vendorOption.setValue(vendorList.get(0));
+                    addToTrack.setDisable(true);
                     break;
             }
 
