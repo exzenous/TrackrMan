@@ -1,0 +1,161 @@
+{
+    "response": {
+        "items": {
+            "EF582568151TH": [
+                {
+                    "barcode": "EF582568151TH",
+                    "status": "103",
+                    "status_description": "Posting/Collection",
+                    "status_date": "24/07/2019 09:04:05+07:00",
+                    "location": "SAMRE",
+                    "postcode": "10600",
+                    "delivery_status": null,
+                    "delivery_description": null,
+                    "delivery_datetime": null,
+                    "receiver_name": null,
+                    "signature": null
+                },
+                {
+                    "barcode": "EF582568151TH",f
+                    "status": "201",
+                    "status_description": "In transit",
+                    "status_date": "24/07/2019 11:02:43+07:00",
+                    "location": "SAMRE",
+                    "postcode": "10600",
+                    "delivery_status": null,
+                    "delivery_description": null,
+                    "delivery_datetime": null,
+                    "receiver_name": null,
+                    "signature": null
+                },
+                {
+                    "barcode": "EF582568151TH",
+                    "status": "206",
+                    "status_description": "Arrival at post office",
+                    "status_date": "24/07/2019 14:55:43+07:00",
+                    "location": "LAK SI",
+                    "postcode": "10210",
+                    "delivery_status": null,
+                    "delivery_description": null,
+                    "delivery_datetime": null,
+                    "receiver_name": null,
+                    "signature": null
+                },
+                {
+                    "barcode": "EF582568151TH",
+                    "status": "201",
+                    "status_description": "In transit",
+                    "status_date": "24/07/2019 14:58:58+07:00",
+                    "location": "LAK SI",
+                    "postcode": "10210",
+                    "delivery_status": null,
+                    "delivery_description": null,
+                    "delivery_datetime": null,
+                    "receiver_name": null,
+                    "signature": null
+                },
+                {
+                    "barcode": "EF582568151TH",
+                    "status": "301",
+                    "status_description": "Item out for physical delivery",
+                    "status_date": "24/07/2019 15:14:22+07:00",
+                    "location": "POST. HEADQUARTERS",
+                    "postcode": "10002",
+                    "delivery_status": null,
+                    "delivery_description": null,
+                    "delivery_datetime": null,
+                    "receiver_name": null,
+                    "signature": null
+                },
+                {
+                    "barcode": "EF582568151TH",
+                    "status": "501",
+                    "status_description": "Final delivery",
+                    "status_date": "24/07/2019 16:59:59+07:00",
+                    "location": "POST. HEADQUARTERS",
+                    "postcode": "10002",
+                    "delivery_status": "S",
+                    "delivery_description": "Successful",
+                    "delivery_datetime": "24/07/2019 16:59:59+07:00",
+                    "receiver_name": "รอจ่าย",
+                    "signature": "https://track.thailandpost.co.th/signature/QDY4MTUxYjVzMGx1VDMz/QGI1c0VGMGx1VDMx/QGI1czBsVEh1VDM0/QGI1czBsdTU4MjVUMzI="
+                },
+                {
+                    "barcode": "EF582568151TH",
+                    "status": "301",
+                    "status_description": "Item out for physical delivery",
+                    "status_date": "26/10/2019 09:50:42+07:00",
+                    "location": "RONG KWANG",
+                    "postcode": "54140",
+                    "delivery_status": null,
+                    "delivery_description": null,
+                    "delivery_datetime": null,
+                    "receiver_name": null,
+                    "signature": null
+                },
+                {
+                    "barcode": "EF582568151TH",
+                    "status": "501",
+                    "status_description": "Final delivery",
+                    "status_date": "26/10/2019 10:00:44+07:00",
+                    "location": "RONG KWANG",
+                    "postcode": "54140",
+                    "delivery_status": "S",
+                    "delivery_description": "Successful",
+                    "delivery_datetime": "26/10/2019 10:00:44+07:00",
+                    "receiver_name": "ยุพิน/ภรรยา",
+                    "signature": "https://track.thailandpost.co.th/signature/QDY4MTUxYjVzMGx1VDMz/QGI1c0VGMGx1VDMx/QGI1czBsVEh1VDM0/QGI1czBsdTU4MjVUMzI="
+                }
+            ]
+        },
+        "track_count": {
+            "track_date": "23/11/2019",
+            "count_number": 15,
+            "track_count_limit": 1000
+        }
+    },
+    "message": "successful",
+    "status": true
+}
+
+Endpoint: https://trackapi.thailandpost.co.th/post/api/v1/authenticate/token
+
+Method: POST
+
+Authorization: Token (Your-Token-Key)
+
+Content-Type: application/json
+
+KGDcUzZVD&RnRMH;QmUIC/T?M6WXJ&D=FmQfRvMGKET+H~ZpG5KQDrP0SPFiF*CvI4H2U7F=N5Q*HxAkH5LeUI2JyA1BLZ=N1O!
+
+===============================================================================
+
+Endpoint: https://trackapi.thailandpost.co.th/post/api/v1/track
+
+Method: POST
+
+eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmUtYXBpIiwiYXVkIjoic2VjdXJlLWFwcCIsInN1YiI6IkF1dGhvcml6YXRpb24iLCJleHAiOjE1NzcwNDY4MTgsInJvbCI6WyJST0xFX1VTRVIiXSwiZCpzaWciOnsicCI6InpXNzB4IiwicyI6bnVsbCwidSI6ImE2OThkNDZiNDA1OGFjMmM3ZGFmZGI5YzJiN2JiZTBiIiwiZiI6InhzeiM5In19.5x4sb7VopGvMDDJpWvY1D-LqLHy2EVtz8XPJFSuH5FBzUA43WoCN0O2ZGyPgWKBaMkGz6TpfGGCNffLc3pFhnQ
+
+Authorization: Token (Your-Token-Key)
+
+Content-Type: application/json
+
+
+
+EF582621151TH, EA666458151TH, RG453678925TH, EF582568151TH, EF488252529TH, EE993673545CN
+
+101   เตรียมการฝากส่ง : Being\nPosted
+102   รับฝากผ่านตัวแทน : Posted
+103   รับฝาก : Posted
+201   อยู่ระหว่างการขนส่ง : In\nTransit
+202   ดำเนินพิธีการศุลกากร : 
+203   ส่งคืนต้นทาง : Being\nReturned
+301   อยู่ระหว่างการนำจ่าย : 
+302   นำจ่าย ณ จุดรับสิ่งของ :
+401   นำจ่ายไม่สำเร็จ : Failed\nDelivery
+501   นำจ่ายสำเร็จ : Final\nDelivery
+
+204   ถึงที่ทำการแลกปลี่ยนระหว่างประเทศขาออก
+205   ถึงที่ทำการแลกปลี่ยนระหว่างประเทศขาเข้า
+206   ถึงที่ทำการไปรษณีย์
+207   เตรียมการขนส่ง
